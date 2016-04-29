@@ -1,9 +1,12 @@
 package com.wd.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Item {
+public class Item implements Serializable{
 
+	private static final long serialVersionUID = -6186112737566104327L;
+	
 	private int i_id;
 	private String i_name;
 	private String i_img1;

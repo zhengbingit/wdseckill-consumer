@@ -1,9 +1,12 @@
 package com.wd.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Orders {
+public class Orders implements Serializable{
+	
+	private static final long serialVersionUID = 7682986141400387777L;
 	
 	private int o_id;
 	private int u_id;

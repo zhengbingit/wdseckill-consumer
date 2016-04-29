@@ -10,13 +10,13 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 配置渲染器 视图解析器 -->
-    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+   <!--  <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-        <!-- 结果视图的前缀 -->
+        结果视图的前缀
         <property name="prefix" value="/"/>
-        <!-- 结果视图的后缀 -->
+        结果视图的后缀
         <property name="suffix" value=".jsp"/>
-    </bean>
+    </bean> -->
     <!-- 扫描该包中的所有注解 -->
     <context:component-scan base-package="com.wd.control"/>
     

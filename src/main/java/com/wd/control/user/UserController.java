@@ -24,9 +24,8 @@ public class UserController {
 	 */
 	@RequestMapping("/register")
 	public String addUserController(User user) {
-		System.out.println(user);
 		userService.addUserService(user);
-		return "login";
+		return "/login.do";
 	}
 	
 	/**
@@ -37,6 +36,6 @@ public class UserController {
 	@RequestMapping("/login")
 	public String loginUserController(User user) {
 		System.out.println(user);
-		return userService.loginService(user) == true ? "listitems" : "login";
+		return userService.loginService(user) == true ? "/listItem.do" : "/login.jsp";
 	}
 }

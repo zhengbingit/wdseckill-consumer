@@ -3,7 +3,7 @@ package com.wd.entity;
 import java.io.Serializable;
 
 public class User implements Serializable{
-	
+
 	private static final long serialVersionUID = 1812346467812806457L;
 	
 	private int u_id;

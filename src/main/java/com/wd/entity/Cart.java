@@ -1,9 +1,12 @@
 package com.wd.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Cart {
+public class Cart implements Serializable{
+	
+	private static final long serialVersionUID = -7822141839538708126L;
 	
 	private int c_id;
 	private int u_id;

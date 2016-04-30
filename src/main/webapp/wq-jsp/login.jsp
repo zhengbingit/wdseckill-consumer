@@ -14,9 +14,9 @@ response.setDateHeader("Expires",0);
 <body>
 	<div class="div">
 		<div class="above">
-			<div style="float: left; margin: 20px;">秒杀平台</div>
+			<div style="float: left; margin: 14px;">秒杀平台</div>
 			<div>
-				<ul>
+				<ul style="margin: 14px;">
 					<li><a href="#"> 登录</a></li>
 					<li><a href="register.jsp"> 注册</a></li>
 				</ul>
@@ -26,7 +26,7 @@ response.setDateHeader("Expires",0);
 		<form action="login.do" method="post">
 		<div class="bottom">
 			<table>
-				<tr>
+				<tr style="align: right;">
 					<td>用户名：</td>
 					<td>
 						<input type="text" name="u_name" placeholder="4-20个字母和数字组成" id="name">
@@ -42,11 +42,14 @@ response.setDateHeader("Expires",0);
 						<div id="error-pwd" class="error-info">输入的不合法</div>
 					</td>
 				</tr>
+				<tr>
+					<td><input type="button" name="" value="回到首页"></td>
+					<td><input type="submit" name="" onclick="toValidate()" value="登录"></td>
+				</tr> 
 			</table>
 		</div>
 		<div class="button">
-			<input type="button" name="" value="返回首页"> 
-			<input type="submit" name="" onclick="toValidate()" value="登录">
+			
 		</div>
 		</form>
 	</div>

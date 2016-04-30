@@ -35,7 +35,6 @@ public class UserController {
 	 */
 	@RequestMapping("/login")
 	public String loginUserController(User user) {
-		System.out.println(user);
 		return userService.loginService(user) == true ? "/listItem.do" : "/login.jsp";
 	}
 }

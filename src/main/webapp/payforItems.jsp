@@ -15,9 +15,9 @@
 			<div>
 				<ul>
 
-					<li><a href="#"> 我的店铺</a></li>
-					<li><a href="#"> 购物车</a></li>
-					<li><a href="#">我的订单</a></li>
+					
+					<li><a href="shopingCart.jsp"> 购物车</a></li>
+					<li><a href="payforItems.jsp">我的订单</a></li>
 					<li><a href="#"> 欢迎帅哥登录</a></li>
 
 				</ul>
@@ -46,7 +46,7 @@
 						</div>
 						<div style="float: right; height: 100%; width: 50%">
 							<ul>
-								<li>这个是商品的标题</li>
+								<li>${orders.i_name }</li>
 								
 
 							</ul>
@@ -56,14 +56,14 @@
 					</div>
 
 					<div class="item-infor-right">
-						<a href="#"   class="below"> 价格：100.00</a><br>
+						<p class="below"> 价格：${orders.i_price }</p><br>
 						 <br> 
 						 
 						
-						 邮费：<input type="text"
-							class="below" value="10.00"><br><br>
-							购买件数：<input type="text"
-							class="below" value="10件">
+						<p class="below"> 邮费： ${orders.i_postage }</p><br><br>
+							<p class="below"> 购买件数： ${orders.o_count }</p>
+							
+							
 					</div>
 				</div>
 			</li>
@@ -112,7 +112,7 @@
 		
 		
 		<div class="blow">
-		总金额是：1000<br>
+		总金额是：${orders.o_total}<br>
 		<input type="button" value="支付">
 		
 		</div>

@@ -5,6 +5,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>购物车系统</title>
 <link href="css/shoppingCart.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+
+
+function checkall(){
+	var checkAll=document.getElementById("checkAll");
+	//全选于不选
+	
+	
+}
+var reduce=document.getElementById("reduce");
+var J_IptAmount=document.getElementById("amount");
+var add=document.getElementById("add");
+function add(){
+	alert(J_IptAmount);
+	//添加一个加一的操作
+	
+	//J_IptAmount.value=J_IptAmount.value+1;
+	
+	
+}
+function reduce(){
+	alert(J_IptAmount);
+	//添加一个加一的操作
+	
+	//add.value=add.value-1;
+	
+	
+}
+
+
+
+</script>
 </head>
 <body>
 
@@ -29,7 +61,7 @@
 		<div class="middle-above">购物车</div>
 
 		<div class="middle-middle">
-			<input type="checkbox" style="float: left;" value="">全选
+			<input type="checkbox" style="float: left;" value="" id="checkAll">全选
 
 
 		</div>
@@ -39,7 +71,7 @@
 				<div class="bottom">
 					<div class="left-menu">
 						<div style="height: 100px; width: 6%; float: left">
-							<input type="checkbox">
+							<input type="checkbox" class="check">
 						</div>
 						<div style="height: 100px; float: left">
 							<img style="height: 100%; width: 139px;" alt=""
@@ -47,10 +79,14 @@
 						</div>
 						<div style="float: right; height: 100%; width: 50%">
 							<ul>
-								<li>这个是商品的标题</li>
-								<li>价格： 100.00</li>
-								<li>邮费：10.00</li>
-								<li>购买件数：10个</li>
+								<li>${item.i_name}</li>
+								<li>价格： ${item.i_price}</li>
+								<li>邮费：${item.i_postage}</li>
+								<li>购买件数：1</li>
+								<span> <a href="javascript:void(0);"  id ="reduce" class="" onclick="add()">-</a> 
+								<input id="amount" type="text" style="width: 20px" value="1"
+									title="请输入购买量"> <a href="javascript:void(0); id="add" onclick="reduce()">+</a>件
+								</span>
 
 							</ul>
 
@@ -62,7 +98,7 @@
 						<a href="#" style="float: right; padding: 2px 49px;"> 进入小美店铺</a><br>
 						<br> <br> <input type="button"
 							style="margin: 40px 350px; padding: 2px 40px;" value="购买">
-							<a   href="payFotItems.jsp">购买</a>
+
 					</div>
 				</div>
 			</li>
@@ -76,7 +112,7 @@
 
 					<div class="left-menu">
 						<div style="height: 100px; width: 6%; float: left">
-							<input type="checkbox">
+							<input type="checkbox" class="check">
 						</div>
 						<div style="height: 100px; float: left">
 							<img style="height: 100%; width: 139px;" alt=""
@@ -117,7 +153,7 @@
 
 	<div class="button">Prev 2 3 6 5 ... 2241 Next</div>
 
-	
+
 
 
 

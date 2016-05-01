@@ -9,16 +9,12 @@ response.setDateHeader("Expires",0);
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>电商秒杀平台—店铺商品列表</title>
-<script type="text/javascript"
-	src="js/jquery.min.js"></script>
-<script type="text/javascript"
-	src="js/bootstrap.min.js"></script>
-<link
-	href="css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<link href="css/userItemsList.css" rel="stylesheet" type="text/css">
 <link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen"/>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<title>电商秒杀平台—店铺商品列表</title>
+<link href="css/userItemsList.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top">

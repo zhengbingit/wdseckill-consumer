@@ -1,23 +1,35 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@
-taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	response.setHeader("Cache-Control", "no-store");
-	response.setHeader("Pragrma", "no-cache");
-	response.setDateHeader("Expires", 0);
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% 
+	response.setHeader("Cache-Control","no-store"); 
+	response.setHeader("Pragrma","no-cache"); 
+	response.setDateHeader("Expires",0); 
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+
 <link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen" />
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<title>电商秒杀平台—商品详情</title>
-<link href="css/itemDetails.css" rel="stylesheet" type="text/css">
+<title>电商秒杀平台—收银台</title>
 </head>
 <body>
+
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="page-header text-left">
+						<h3>收银台</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -31,8 +43,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="#">商品详情</a></li>
-					<li><a href="#">我的店铺<br></a></li>
+					<li class="active"><a href="#">收银台</a></li>
 					<li><a href="#">购物车<br></a></li>
 					<li><a href="#">我的订单<br></a></li>
 					<li><a href="#">欢迎XX登录<br></a></li>
@@ -41,69 +52,72 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 		</div>
 	</div>
 	<div class="section">
-		<div class="container"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2">
+					<img
+						src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?w=1024&amp;q=50&amp;fm=jpg&amp;s=1ffa61419561b5c796bca3158e7c704c"
+						class="img-responsive">
+				</div>
+				<div class="col-md-8">
+					<h3 contenteditable="true">这里是商品的标题</h3>
+				</div>
+				<div class="col-md-2">
+					<h4>价格：100.00</h4>
+					<h4>邮费：10.00</h4>
+					<h4>购买件数：10件</h4>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="section">
 		<div class="container">
+			<div class="row">
+				<div class="col-md-2">
+					<img
+						src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?w=1024&amp;q=50&amp;fm=jpg&amp;s=1ffa61419561b5c796bca3158e7c704c"
+						class="img-responsive">
+				</div>
+				<div class="col-md-8">
+					<h3 contenteditable="true">这里是商品的标题</h3>
+				</div>
+				<div class="col-md-2">
+					<h4>价格：100.00</h4>
+					<h4>邮费：10.00</h4>
+					<h4>购买件数：10件</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2">
+					<img
+						src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?w=1024&amp;q=50&amp;fm=jpg&amp;s=1ffa61419561b5c796bca3158e7c704c"
+						class="img-responsive">
+				</div>
+				<div class="col-md-8">
+					<h3 contenteditable="true">这里是商品的标题</h3>
+				</div>
+				<div class="col-md-2">
+					<h4>价格：100.00</h4>
+					<h4>邮费：10.00</h4>
+					<h4>购买件数：10件</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="text-right" contenteditable="true">总金额：10000.00</h3>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<a class="btn btn-primary">返回</a>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<hr>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<img
-						src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-						class="img-responsive">
-				</div>
-				<div class="col-md-5">
-					<h1>这里是商品的标题</h1>
-					<h3>价格：100.00</h3>
-					<h3>邮费：10.00</h3>
-					<h3 class="text-danger">剩余：3件 无货</h3>
-					<hr>
-					<h3 class="text-right">离开始还剩 30:00</h3>
-					<a class="btn btn-default">加入购物车</a><a class="btn btn-default">购买</a>
-					<div class="btn-group"></div>
-				</div>
-				<div class="col-md-1">
-					<a class="btn btn-info">秒杀</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<p>
-						商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述<br>商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8">
-					<img
-						src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
-						class="img-responsive">
+					<a class="btn btn-primary">支付</a>
 				</div>
 			</div>
 		</div>

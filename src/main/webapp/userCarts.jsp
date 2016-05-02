@@ -9,12 +9,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen" />
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="css/userItemsList.css" rel="stylesheet" type="text/css">
-<title>电商秒杀平台—商品列表</title>
-<link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen" />
+<title>电商秒杀平台—购物车</title>
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top">
@@ -30,10 +30,10 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="#">我的店铺</a></li>
-					<li><a href="#">购物车</a></li>
-					<li><a href="#">我的订单</a></li>
-					<li><a href="#">欢迎XX登录，余额100000</a></li>
+					<li class="active"><a href="#">购物车</a></li>
+					<li><a href="#">我的店铺<br></a></li>
+					<li><a href="#">我的订单<br></a></li>
+					<li><a href="#">欢迎XX登录<br></a></li>
 				</ul>
 			</div>
 		</div>
@@ -43,33 +43,21 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="page-header text-left" style="margin: 50px 0 20px;">
+						<h3>购物车</h3>
 					</div>
 				</div>
 			</div>
-			<div class="row"></div>
-		</div>
-	</div>
-	<div style="padding: 10px 0;">
-		<div class="container">
-			<div class="row" style="border-bottom: 1px solid #eeeeee;">
-				<div class="col-md-2">
-					<img
-						src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?w=1024&amp;q=50&amp;fm=jpg&amp;s=1ffa61419561b5c796bca3158e7c704c"
-						class="img-responsive">
-				</div>
-				<div class="col-md-2">
-					<h5 contenteditable="true">这里是商品的标题</h5>
-					<h5>价格：100.00</h5>
-					<h5>邮费：10.00</h5>
-					<h5>剩余：10件</h5>
-				</div>
-				<div class="col-md-5">
-					<!-- <a class="btn btn-info btn-xs">秒杀<br></a> -->
-				</div>
-				<div class="col-md-3" style="text-align: right;">
-					<a class="text-primary" href="#">进入XX店铺</a>
-					<h3 class="text-right"></h3>
-					<button type="button" class="btn btn-default">加入购物车</button>
+			<div class="row">
+				<div class="col-md-12" style="width: 17%;">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10" style="margin-left: 1.6%;">
+								<div class="checkbox">
+									<label><input type="checkbox">全选&nbsp;</label>
+								</div>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -77,24 +65,33 @@
 	<div style="padding: 10px 0;">
 		<div class="container">
 			<div class="row" style="border-bottom: 1px solid #eeeeee;">
-				<div class="col-md-2">
+				<div class="col-md-1" style="width: 1.3%;">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<div class="checkbox">
+									<label><input type="checkbox"></label>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-3" style="width: 20%;">
 					<img
-						src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?w=1024&amp;q=50&amp;fm=jpg&amp;s=1ffa61419561b5c796bca3158e7c704c"
+						src="picture/exp1.jpeg"
 						class="img-responsive">
 				</div>
-				<div class="col-md-2">
-					<h5 contenteditable="true">这里是商品的标题</h5>
+				<div class="col-md-5">
+					<h5 contenteditable="false">这里是商品的标题</h5>
 					<h5>价格：100.00</h5>
 					<h5>邮费：10.00</h5>
-					<h5 class="text-danger">无货</h5>
+					<h5>购买件数：10件</h5>
 				</div>
-				<div class="col-md-5">
-					<!-- <a class="btn btn-info btn-xs">秒杀<br></a> -->
-				</div>
-				<div class="col-md-3" style="text-align: right;">
-					<a class="text-primary" href="#">进入XX店铺</a>
+				<div class="col-md-3 text-right" style="width: 35%;">
+					<h5 class="text-primary text-right">进入XX店铺</h5>
 					<h3 class="text-right"></h3>
-					<button type="button" class="btn btn-default" disabled="disabled">加入购物车</button>
+					<h5 class="text-right">销量：10件</h5>
+					<a class="btn btn-info btn-sm">购买</a>
 				</div>
 			</div>
 		</div>
@@ -102,26 +99,33 @@
 	<div style="padding: 10px 0;">
 		<div class="container">
 			<div class="row" style="border-bottom: 1px solid #eeeeee;">
-				<div class="col-md-2">
+				<div class="col-md-1" style="width: 1.3%;">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<div class="checkbox">
+									<label><input type="checkbox"></label>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-3" style="width: 20%;">
 					<img
-						src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?w=1024&amp;q=50&amp;fm=jpg&amp;s=1ffa61419561b5c796bca3158e7c704c"
+						src="picture/exp1.jpeg"
 						class="img-responsive">
 				</div>
-				<div class="col-md-2">
-					<h5 contenteditable="true">这里是商品的标题</h5>
+				<div class="col-md-5">
+					<h5 contenteditable="false">这里是商品的标题</h5>
 					<h5>价格：100.00</h5>
 					<h5>邮费：10.00</h5>
-					<h5>剩余：10件</h5>
+					<h5>购买件数：10件</h5>
 				</div>
-				<div class="col-md-5">
-					<a class="btn btn-info btn-xs">秒杀<br></a>
-				</div>
-				<div class="col-md-3" style="text-align: right;">
-					<a class="text-primary" href="#">进入XX店铺</a>
-					<h5 class=" text-right">离开始还剩 30:00</h5>
+				<div class="col-md-3 text-right" style="width: 35%;">
+					<h5 class="text-primary text-right">进入XX店铺</h5>
 					<h3 class="text-right"></h3>
-					<button type="button" class="btn btn-default"
-						style="color: #AF3030;">刷新</button>
+					<h5 class="text-right">销量：10件</h5>
+					<a class="btn btn-info btn-sm">购买</a>
 				</div>
 			</div>
 		</div>
@@ -129,30 +133,44 @@
 	<div style="padding: 10px 0;">
 		<div class="container">
 			<div class="row" style="border-bottom: 1px solid #eeeeee;">
-				<div class="col-md-2">
+				<div class="col-md-1" style="width: 1.3%;">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<div class="checkbox">
+									<label><input type="checkbox"></label>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-3" style="width: 20%;">
 					<img
-						src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?w=1024&amp;q=50&amp;fm=jpg&amp;s=1ffa61419561b5c796bca3158e7c704c"
+						src="picture/exp1.jpeg"
 						class="img-responsive">
 				</div>
-				<div class="col-md-2">
-					<h5 contenteditable="true">这里是商品的标题</h5>
+				<div class="col-md-5">
+					<h5 contenteditable="false">这里是商品的标题</h5>
 					<h5>价格：100.00</h5>
 					<h5>邮费：10.00</h5>
-					<h5>剩余：10件</h5>
+					<h5>购买件数：10件</h5>
 				</div>
-				<div class="col-md-5">
-					<!-- <a class="btn btn-info btn-xs">秒杀<br></a> -->
-				</div>
-				<div class="col-md-3" style="text-align: right;">
-					<a class="text-primary" href="#">进入XX店铺</a>
+				<div class="col-md-3 text-right" style="width: 35%;">
+					<h5 class="text-primary text-right">进入XX店铺</h5>
 					<h3 class="text-right"></h3>
-					<button type="button" class="btn btn-default">加入购物车</button>
+					<h5 class="text-right">销量：10件</h5>
+					<a class="btn btn-info btn-sm">购买</a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div style="padding: 10px 0;">
+	<div class="section">
 		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-right">
+					<a class="btn btn-primary">一起购买</a>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-12 text-right">
 					<ul class="pagination">

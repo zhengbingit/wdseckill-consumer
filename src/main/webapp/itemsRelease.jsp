@@ -15,6 +15,15 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <title>电商秒杀平台—商品发布</title>
+<script type="text/javascript">
+	function secKill() {
+		if($("#isSecKill").prop("checked")) {
+			$("#secKillTime").attr("disabled", false);
+		}else {
+			$("#secKillTime").attr("disabled", true);
+		}
+	}
+</script>
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top">
@@ -57,43 +66,39 @@
 				<div class="col-md-12 text-right">
 					<form class="form-horizontal text-left" role="form">
 						<div class="form-group has-feedback">
-							<div class="col-sm-2">
+							<div class="col-sm-2" style="text-align: right;">
 								<label for="inputEmail3" class="control-label">*商品名称：<br></label>
 							</div>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputEmail3"
-									placeholder="4-20个字母和数字组成"><span
-									class="fa fa-check form-control-feedback"></span>
+							<div class="col-sm-10" style="width: 50%;">
+								<input type="text" class="form-control" id="inputEmail3"  onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"
+									placeholder="4-20个字母和数字组成">
 							</div>
 						</div>
 						<div class="form-group has-feedback">
-							<div class="col-sm-2">
+							<div class="col-sm-2" style="text-align: right;">
 								<label for="inputEmail3" class="control-label">*价格：</label>
 							</div>
-							<div class="col-sm-10">
-								<input type="password" class="form-control" id="inputEmail3"
-									placeholder="最大999999999.99"><span
-									class="fa fa-check form-control-feedback"></span>
+							<div class="col-sm-10" style="width: 50%;">
+								<input type="text" class="form-control" id="inputEmail3" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')"
+									placeholder="最大999999999.99">
 							</div>
 						</div>
 						<div class="form-group has-feedback">
-							<div class="col-sm-2">
+							<div class="col-sm-2" style="text-align: right;">
 								<label for="inputEmail3" class="control-label">*邮费：</label>
 							</div>
-							<div class="col-sm-10">
-								<input type="password" class="form-control" id="inputEmail3"
-									placeholder="最大99999.99"><span
-									class="fa fa-check form-control-feedback"></span>
+							<div class="col-sm-10" style="width: 50%;">
+								<input type="text" class="form-control" id="inputEmail3" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')"
+									placeholder="最大99999.99">
 							</div>
 						</div>
 						<div class="form-group has-feedback">
-							<div class="col-sm-2">
+							<div class="col-sm-2" style="text-align: right;">
 								<label for="inputEmail3" class="control-label">*库存：</label>
 							</div>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputEmail3"
-									placeholder="最大99999"><span
-									class="fa fa-check form-control-feedback"></span>
+							<div class="col-sm-10" style="width: 50%;">
+								<input type="text" class="form-control" id="inputEmail3" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')"
+									placeholder="最大99999">
 							</div>
 						</div>
 					</form>
@@ -143,7 +148,7 @@
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<div class="checkbox">
-									<label><input type="checkbox">是否秒杀商品</label>
+									<label><input id="isSecKill" type="checkbox" onclick="secKill();">是否秒杀商品</label>
 								</div>
 							</div>
 						</div>
@@ -153,8 +158,8 @@
 							<div class="col-sm-2">
 								<label for="inputEmail3" class="control-label">秒杀开始时间：</label>
 							</div>
-							<div class="col-sm-10">
-								<input type="email" class="form-control" id="inputEmail3"
+							<div class="col-sm-10" style="width: 50%;">
+								<input type="email" class="form-control" id="secKillTime" disabled="disabled"
 									placeholder="YYYY-MM-DD HH:mm:ss">
 							</div>
 						</div>

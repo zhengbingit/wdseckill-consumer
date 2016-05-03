@@ -9,10 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
-	rel="stylesheet" type="text/css">
-	
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen" />
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -52,12 +49,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="section">
+	<div class="section" style="padding: 15px 0;">
 		<div class="container">
-			<div class="row">
+			<div class="row" style="border-bottom: 1px solid #eeeeee;">
 				<div class="col-md-2">
 					<img
-						src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?w=1024&amp;q=50&amp;fm=jpg&amp;s=1ffa61419561b5c796bca3158e7c704c"
+						src="picture/exp1.jpeg"
 						class="img-responsive">
 				</div>
 				<div class="col-md-7">
@@ -73,12 +70,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="section">
+	<div class="section" style="padding: 15px 0;">
 		<div class="container">
-			<div class="row">
+			<div class="row" style="border-bottom: 1px solid #eeeeee;">
 				<div class="col-md-2">
 					<img
-						src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?w=1024&amp;q=50&amp;fm=jpg&amp;s=1ffa61419561b5c796bca3158e7c704c"
+						src="picture/exp1.jpeg"
 						class="img-responsive">
 				</div>
 				<div class="col-md-7">
@@ -94,12 +91,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="section">
+	<div class="section" style="padding: 15px 0;">
 		<div class="container">
-			<div class="row">
+			<div class="row" style="border-bottom: 1px solid #eeeeee;">
 				<div class="col-md-2">
 					<img
-						src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?w=1024&amp;q=50&amp;fm=jpg&amp;s=1ffa61419561b5c796bca3158e7c704c"
+						src="picture/exp1.jpeg"
 						class="img-responsive">
 				</div>
 				<div class="col-md-7">
@@ -115,12 +112,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="section">
+	<div class="section" style="padding: 15px 0;">
 		<div class="container">
-			<div class="row">
+			<div class="row" style="border-bottom: 1px solid #eeeeee;">
 				<div class="col-md-2">
 					<img
-						src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?w=1024&amp;q=50&amp;fm=jpg&amp;s=1ffa61419561b5c796bca3158e7c704c"
+						src="picture/exp1.jpeg"
 						class="img-responsive">
 				</div>
 				<div class="col-md-7">

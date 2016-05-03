@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@
-taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	response.setHeader("Cache-Control", "no-store");
 	response.setHeader("Pragrma", "no-cache");
@@ -62,7 +61,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 			<div class="row">
 				<div class="col-md-6">
 					<img
-						src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+						src="picture/exp1.jpeg"
 						class="img-responsive">
 				</div>
 				<div class="col-md-5">
@@ -102,7 +101,7 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 			<div class="row">
 				<div class="col-md-8">
 					<img
-						src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+						src="picture/exp1.jpeg"
 						class="img-responsive">
 				</div>
 			</div>
@@ -133,9 +132,11 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 					</div>
 					<div class="row">
 						<div class="col-md-12 hidden-xs text-right">
-							<a
-								href="../Workspaces/Eclipse-j2EE/wdseckill-consumer/src/main/webapp/logo/logo.png"><i
-								class="fa fa-3x fa-fw fa-github text-inverse"></i></a> <a href="#"><i
+							<a href="logo/logo.png">
+								<img alt="www.baidu.com" src="logo/logo.png">
+								<i class="fa fa-3x fa-fw fa-github text-inverse"></i>
+							</a>
+							<a href="#"><i
 								class="fa fa-3x fa-fw fa-weibo text-inverse"></i></a> <a href="#"><i
 								class="fa fa-3x fa-fw fa-weixin text-inverse"></i></a>
 						</div>

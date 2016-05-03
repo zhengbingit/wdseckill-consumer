@@ -10,17 +10,16 @@ response.setDateHeader("Expires",0);
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>会员注册</title>
-<script type="text/javascript"
-	src="js/jquery.min.js"></script>
-<script type="text/javascript"
-	src="js/bootstrap.min.js"></script>
-<link
-	href="css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css"
-	rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen"/>
+<script type="text/javascript">
+	function checkValues() {
+		
+	}
+</script>
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top">
@@ -36,8 +35,8 @@ response.setDateHeader("Expires",0);
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="#">登录</a></li>
-					<li><a href="#">注册<br></a></li>
+					<li class="active"><a href="#">注册</a></li>
+					<li><a href="#">登录<br></a></li>
 				</ul>
 			</div>
 		</div>
@@ -119,11 +118,12 @@ response.setDateHeader("Expires",0);
 								<p class="help-block">Example block-level help text here.</p>
 							</div>
 						</div>
-						<div class="form-group">
-							<div class="col-sm-10 col-sm-offset-2 text-center" style="margin-left: 0%;">
-								<button type="submit" class="btn btn-default">回到首页</button>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<button type="submit" class="btn btn-default">完成注册</button>
+						<div class="row">
+							<div class="col-md-6 text-right">
+								<a class="btn btn-primary">回到首页</a>
+							</div>
+							<div class="col-md-6">
+								<a class="btn btn-primary">完成注册</a>
 							</div>
 						</div>
 					</form>

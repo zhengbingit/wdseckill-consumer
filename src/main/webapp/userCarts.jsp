@@ -15,6 +15,37 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <title>电商秒杀平台—购物车</title>
+<script type="text/javascript">
+	function checkAll() {
+		if($("#checkAllButton").prop("checked")) {
+			$(".checkBoxs").each(function() {
+				$(this).prop("checked",true);
+			});
+		}else {
+			$(".checkBoxs").each(function() {
+				$(this).prop("checked",false);
+			});
+		}
+	}
+	$(function(){
+		$(".checkBoxs").change(function() {
+			if(!$(this).prop("checked")) {
+				$("#checkAllButton").prop("checked",false);
+			}
+			var a = 0;
+			var b = 0;
+			$(".checkBoxs").each(function() {
+				a++;
+				if($(this).prop("checked")) {
+					b++;
+				}
+			});
+			if(a == b) {
+				$("#checkAllButton").prop("checked",true);
+			}
+		});
+	});
+</script>
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top">
@@ -53,7 +84,7 @@
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10" style="margin-left: 1.6%;">
 								<div class="checkbox">
-									<label><input type="checkbox">全选&nbsp;</label>
+									<label><input id="checkAllButton" type="checkbox" onclick="checkAll();">全选&nbsp;</label>
 								</div>
 							</div>
 						</div>
@@ -70,41 +101,7 @@
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<div class="checkbox">
-									<label><input type="checkbox"></label>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="col-md-3" style="width: 20%;">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
-				</div>
-				<div class="col-md-5">
-					<h5 contenteditable="false">这里是商品的标题</h5>
-					<h5>价格：100.00</h5>
-					<h5>邮费：10.00</h5>
-					<h5>购买件数：10件</h5>
-				</div>
-				<div class="col-md-3 text-right" style="width: 35%;">
-					<h5 class="text-primary text-right">进入XX店铺</h5>
-					<h3 class="text-right"></h3>
-					<h5 class="text-right">销量：10件</h5>
-					<a class="btn btn-info btn-sm">购买</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div style="padding: 10px 0;">
-		<div class="container">
-			<div class="row" style="border-bottom: 1px solid #eeeeee;">
-				<div class="col-md-1" style="width: 1.3%;">
-					<form class="form-horizontal" role="form">
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<div class="checkbox">
-									<label><input type="checkbox"></label>
+									<label><input type="checkbox" class="checkBoxs"></label>
 								</div>
 							</div>
 						</div>
@@ -138,7 +135,41 @@
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<div class="checkbox">
-									<label><input type="checkbox"></label>
+									<label><input type="checkbox" class="checkBoxs"></label>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-3" style="width: 20%;">
+					<img
+						src="picture/exp1.jpeg"
+						class="img-responsive">
+				</div>
+				<div class="col-md-5">
+					<h5 contenteditable="false">这里是商品的标题</h5>
+					<h5>价格：100.00</h5>
+					<h5>邮费：10.00</h5>
+					<h5>购买件数：10件</h5>
+				</div>
+				<div class="col-md-3 text-right" style="width: 35%;">
+					<h5 class="text-primary text-right">进入XX店铺</h5>
+					<h3 class="text-right"></h3>
+					<h5 class="text-right">销量：10件</h5>
+					<a class="btn btn-info btn-sm">购买</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="padding: 10px 0;">
+		<div class="container">
+			<div class="row" style="border-bottom: 1px solid #eeeeee;">
+				<div class="col-md-1" style="width: 1.3%;">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<div class="checkbox">
+									<label><input type="checkbox" class="checkBoxs"></label>
 								</div>
 							</div>
 						</div>

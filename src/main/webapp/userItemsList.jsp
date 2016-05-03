@@ -1,15 +1,15 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% 
-response.setHeader("Cache-Control","no-store"); 
-response.setHeader("Pragrma","no-cache"); 
-response.setDateHeader("Expires",0); 
+<%
+	response.setHeader("Cache-Control", "no-store");
+	response.setHeader("Pragrma", "no-cache");
+	response.setDateHeader("Expires", 0);
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen"/>
+<link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen" />
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -30,7 +30,7 @@ response.setDateHeader("Expires",0);
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="#">我的店铺</a></li>
+					<li><a href="#">我的店铺</a></li>
 					<li><a href="#">购物车</a></li>
 					<li><a href="#">我的订单</a></li>
 					<li><a href="#">欢迎XX登录</a></li>
@@ -59,7 +59,7 @@ response.setDateHeader("Expires",0);
 			<div class="row" style="border-bottom: 1px solid #eeeeee;">
 				<div class="col-md-2">
 					<img
-						src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?w=1024&amp;q=50&amp;fm=jpg&amp;s=1ffa61419561b5c796bca3158e7c704c"
+						src="picture/exp1.jpeg"
 						class="img-responsive">
 				</div>
 				<div class="col-md-2">
@@ -85,7 +85,7 @@ response.setDateHeader("Expires",0);
 			<div class="row" style="border-bottom: 1px solid #eeeeee;">
 				<div class="col-md-2">
 					<img
-						src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?w=1024&amp;q=50&amp;fm=jpg&amp;s=1ffa61419561b5c796bca3158e7c704c"
+						src="picture/exp1.jpeg"
 						class="img-responsive">
 				</div>
 				<div class="col-md-2">
@@ -111,7 +111,7 @@ response.setDateHeader("Expires",0);
 			<div class="row" style="border-bottom: 1px solid #eeeeee;">
 				<div class="col-md-2">
 					<img
-						src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?w=1024&amp;q=50&amp;fm=jpg&amp;s=1ffa61419561b5c796bca3158e7c704c"
+						src="picture/exp1.jpeg"
 						class="img-responsive">
 				</div>
 				<div class="col-md-2">
@@ -137,7 +137,7 @@ response.setDateHeader("Expires",0);
 			<div class="row" style="border-bottom: 1px solid #eeeeee;">
 				<div class="col-md-2">
 					<img
-						src="https://ununsplash.imgix.net/photo-1423753623104-718aaace6772?w=1024&amp;q=50&amp;fm=jpg&amp;s=1ffa61419561b5c796bca3158e7c704c"
+						src="picture/exp1.jpeg"
 						class="img-responsive">
 				</div>
 				<div class="col-md-2">

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wd.entity.Item;
 import com.wd.service.items.IItemService;
-import com.wd.service.user.IUserService;
 
 @Controller
 @RequestMapping("/item")
@@ -38,7 +37,7 @@ public class ItemController {
 	 * @param i_id
 	 * @return
 	 */
-	@RequestMapping("deleteItem")
+	@RequestMapping("/deleteItem")
 	public String deleteItem(HttpServletRequest request) {
 		int u_id = Integer.parseInt(request.getParameter("u_id"));
 		int i_id = Integer.parseInt(request.getParameter("i_id"));
@@ -103,6 +102,7 @@ public class ItemController {
 		model.addAttribute("list_items", list_items);
 		if(list_items.size()!=0){
 			model.addAttribute("storeName", list_items.get(0).getUser().getU_store());
+			model.addAttribute("storeId", list_items.get(0).getUser().getU_id());
 		}
 		return "/userItemsList.jsp";
 	}

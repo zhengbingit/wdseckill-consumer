@@ -10,11 +10,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>会员登录</title>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/x-icon" href="../logo/wd.ico" media="screen" />
 <script type="text/javascript">
 	function checkValues() {
 		var username = $("#user_name").val();
@@ -41,8 +41,8 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="userLogin.jsp">登录<br></a></li>
-					<li><a href="userRegister.jsp">注册</a></li>
+					<li class="active"><a href="../userLogin.jsp">登录<br></a></li>
+					<li><a href="../userRegister.jsp">注册</a></li>
 				</ul>
 			</div>
 		</div>
@@ -62,7 +62,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<form class="form-horizontal text-left" role="form" action="user/login.do" id="userLoginForm"
+					<form class="form-horizontal text-left" role="form" action="../user/login.do" id="userLoginForm"
 						method="post">
 						<div class="form-group has-feedback" style="margin-left: 170px;">
 							<div class="col-sm-2" style="text-align: right;">
@@ -74,7 +74,7 @@
 									class="fa fa-check form-control-feedback"></span>
 							</div>
 							<div class="col-sm-offset-2 col-sm-10">
-								<p class="help-block">Example block-level help text here.</p>
+								<!-- <p class="help-block">Example block-level help text here.</p> -->
 							</div>
 						</div>
 						<div class="form-group has-feedback" style="margin-left: 170px;">
@@ -87,7 +87,7 @@
 									class="fa fa-check form-control-feedback"></span>
 							</div>
 							<div class="col-sm-offset-2 col-sm-10">
-								<p class="help-block">Example block-level help text here.</p>
+								<!-- <p class="help-block">Example block-level help text here.</p> -->
 							</div>
 						</div>
 						<div class="row">

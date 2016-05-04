@@ -1,9 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <% 
-response.setHeader("Cache-Control","no-store"); 
-response.setHeader("Pragrma","no-cache"); 
-response.setDateHeader("Expires",0); 
+	response.setHeader("Cache-Control","no-store"); 
+	response.setHeader("Pragrma","no-cache"); 
+	response.setDateHeader("Expires",0); 
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -63,11 +63,11 @@ response.setDateHeader("Expires",0);
 							</div>
 							<div class="col-sm-10" style="width: 45%">
 								<input type="text" class="form-control" id="inputEmail3"
-									placeholder="4-20个字母和数字组成"><span
-									class="fa fa-check form-control-feedback"></span>
+									placeholder="4-20个字母和数字组成">
+									<span class="fa fa-check form-control-feedback"></span>
 							</div>
 							<div class="col-sm-offset-2 col-sm-10">
-								<p class="help-block">Example block-level help text here.</p>
+								<!-- <p class="help-block">Example block-level help text here.</p> -->
 							</div>
 						</div>
 						<div class="form-group has-feedback" style="margin-left: 170px;">
@@ -80,7 +80,7 @@ response.setDateHeader("Expires",0);
 									class="fa fa-check form-control-feedback"></span>
 							</div>
 							<div class="col-sm-offset-2 col-sm-10">
-								<p class="help-block">Example block-level help text here.</p>
+								<!-- <p class="help-block">Example block-level help text here.</p> -->
 							</div>
 						</div>
 						<div class="form-group has-feedback" style="margin-left: 170px;">
@@ -92,7 +92,7 @@ response.setDateHeader("Expires",0);
 									class="fa fa-check form-control-feedback"></span>
 							</div>
 							<div class="col-sm-offset-2 col-sm-10">
-								<p class="help-block">Example block-level help text here.</p>
+								<!-- <p class="help-block">Example block-level help text here.</p> -->
 							</div>
 						</div>
 						<div class="form-group" style="margin-left: 170px;">
@@ -110,12 +110,11 @@ response.setDateHeader("Expires",0);
 								<label for="inputEmail3" class="control-label">店铺名称：</label>
 							</div>
 							<div class="col-sm-10" style="width: 45%">
-								<input type="text" class="form-control" id="inputEmail3"
-									placeholder="2-20个汉字"><span
-									class="fa fa-check form-control-feedback"></span>
+								<input type="text" class="form-control" id="inputEmail3" placeholder="2-20个汉字">
+								<span class="fa fa-check form-control-feedback"></span>
 							</div>
 							<div class="col-sm-offset-2 col-sm-10">
-								<p class="help-block">Example block-level help text here.</p>
+								<!-- <p class="help-block">Example block-level help text here.</p> -->
 							</div>
 						</div>
 						<div class="row">

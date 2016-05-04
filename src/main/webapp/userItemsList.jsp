@@ -9,10 +9,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/x-icon" href="../logo/wd.ico" media="screen" />
+<link rel="icon" type="image/x-icon" href="../logo/wd.ico"
+	media="screen" />
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="../css/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
 <title>电商秒杀平台—店铺商品列表</title>
 <link href="../css/userItemsList.css" rel="stylesheet" type="text/css">
 </head>
@@ -49,119 +51,66 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<a class="btn btn-sm btn-success">发布新商品<br></a>
+					<c:if test="${storeId == sessionScope.user.u_id}">
+						<a class="btn btn-sm btn-success">发布新商品<br></a>
+					</c:if>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<c:forEach items="${list_items}" var="item">
-	<div style="padding: 10px 0;">
-		<div class="container">
-			<div class="row" style="border-bottom: 1px solid #eeeeee;">
-				<div class="col-md-2">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
-				</div>
-				<div class="col-md-2">
-					<h5 contenteditable="false">${item.i_name}</h5>
-					<h5>价格：${item.i_price}</h5>
-					<h5>邮费：${item.i_postage}</h5>
-					<h5>剩余：${item.i_stock}件</h5>
-				</div>
-				<div class="col-md-5">
-					<a class="btn btn-info btn-xs">秒杀<br></a>
-				</div>
-				<div class="col-md-3">
-					<h5 class="text-primary text-right"><a href="#">编辑商品</a></h5>
-					<h5 class="text-primary text-right"><a href="deleteItem.do?u_id=${item.user.u_id}&i_id=${item.i_id}">删除商品</a></h5>
-					<h3 class="text-right"></h3>
-					<h5 class="text-right">销量：${item.i_sales}件</h5>
+		<div style="padding: 10px 0;">
+			<div class="container">
+				<div class="row" style="border-bottom: 1px solid #eeeeee;">
+					<div class="col-md-2">
+						<img src="picture/exp1.jpeg" class="img-responsive">
+					</div>
+					<div class="col-md-2">
+						<h5 contenteditable="false">${item.i_name}</h5>
+						<h5>价格：${item.i_price}</h5>
+						<h5>邮费：${item.i_postage}</h5>
+						<c:if test="${item.i_stock != 0}">
+							<h5>剩余：${item.i_stock}件</h5>
+						</c:if>
+						<c:if test="${item.i_stock == 0}">
+							<h5 class="text-danger">无货</h5>
+						</c:if>
+					</div>
+					<div class="col-md-5">
+						<c:if test="${item.i_iskill == 1}">
+							<a class="btn btn-info btn-xs">秒杀<br></a>
+						</c:if>
+					</div>
+					<div class="col-md-3" style="text-align: right;">
+						<c:if test="${item.user.u_id == sessionScope.user.u_id}">
+							<h5 class="text-primary text-right">
+								<a href="#">编辑商品</a>
+							</h5>
+							<h5 class="text-primary text-right">
+								<a href="deleteItem.do?u_id=${item.user.u_id}&i_id=${item.i_id}">删除商品</a>
+							</h5>
+						</c:if>
+						<c:if test="${item.i_iskill == 1}">
+							<h5 class="text-right">离开始还剩 30:00</h5>
+						</c:if>
+						<h3 class="text-right"></h3>
+						<c:if test="${item.i_iskill == 1}">
+							<button type="button" class="btn btn-default" style="color: #AF3030;">刷新</button>
+						</c:if>
+						<c:if test="${item.i_stock != 0 && item.i_iskill != 1}">
+							<button type="button" class="btn btn-default" onclick="">加入购物车</button>
+						</c:if>
+						<c:if test="${item.i_stock == 0 && item.i_iskill != 1}">
+							<button type="button" class="btn btn-default" disabled="disabled">加入购物车</button>
+						</c:if>
+						<h5 class="text-right">销量：${item.i_sales}件</h5>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</c:forEach>
-	
-	<div style="padding: 10px 0;">
-		<div class="container">
-			<div class="row" style="border-bottom: 1px solid #eeeeee;">
-				<div class="col-md-2">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
-				</div>
-				<div class="col-md-2">
-					<h5 contenteditable="true">这里是商品的标题</h5>
-					<h5>价格：100.00</h5>
-					<h5>邮费：10.00</h5>
-					<h5>剩余：10件</h5>
-				</div>
-				<div class="col-md-5">
-					<a class="btn btn-info btn-xs">秒杀<br></a>
-				</div>
-				<div class="col-md-3">
-					<h5 class="text-primary text-right">编辑商品</h5>
-					<h5 class="text-primary text-right">删除商品</h5>
-					<h3 class="text-right"></h3>
-					<h5 class="text-right">销量：10件</h5>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div style="padding: 10px 0;">
-		<div class="container">
-			<div class="row" style="border-bottom: 1px solid #eeeeee;">
-				<div class="col-md-2">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
-				</div>
-				<div class="col-md-2">
-					<h5 contenteditable="true">这里是商品的标题</h5>
-					<h5>价格：100.00</h5>
-					<h5>邮费：10.00</h5>
-					<h5 class="text-danger">无货</h5>
-				</div>
-				<div class="col-md-5">
-					<a class="btn btn-info btn-xs">秒杀<br></a>
-				</div>
-				<div class="col-md-3">
-					<h5 class="text-primary text-right">编辑商品</h5>
-					<h5 class="text-primary text-right">删除商品</h5>
-					<h3 class="text-right"></h3>
-					<h5 class="text-right">销量：10件</h5>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div style="padding: 10px 0;">
-		<div class="container">
-			<div class="row" style="border-bottom: 1px solid #eeeeee;">
-				<div class="col-md-2">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
-				</div>
-				<div class="col-md-2">
-					<h5 contenteditable="true">这里是商品的标题</h5>
-					<h5>价格：100.00</h5>
-					<h5>邮费：10.00</h5>
-					<h5 class="text-danger">无货</h5>
-				</div>
-				<div class="col-md-5">
-					<a class="btn btn-info btn-xs">秒杀<br></a>
-				</div>
-				<div class="col-md-3">
-					<h5 class="text-primary text-right">编辑商品</h5>
-					<h5 class="text-primary text-right">删除商品</h5>
-					<h3 class="text-right"></h3>
-					<h5 class="text-right">销量：10件</h5>
-				</div>
-			</div>
-		</div>
-	</div>
+
 	<div style="padding: 10px 0;">
 		<div class="container">
 			<div class="row">

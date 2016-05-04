@@ -46,7 +46,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		// 如果没有登录，限制访问的页面
 		for (String temp : allowedPass) {
 			if (url.endsWith(temp)) {
-				response.sendRedirect(request.getContextPath() + "/listItemNoLogin.do");
+				response.sendRedirect(request.getContextPath() + "/item/listItemNoLogin.do");
 				return false;
 			}
 		}

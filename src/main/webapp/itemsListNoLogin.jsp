@@ -7,14 +7,16 @@
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href="css/userItemsList.css" rel="stylesheet" type="text/css">
-	<title>电商秒杀平台—商品列表</title>
-	<link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<link href="../css/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
+<link href="../css/userItemsList.css" rel="stylesheet" type="text/css">
+<title>电商秒杀平台—商品列表</title>
+<link rel="icon" type="image/x-icon" href="../logo/wd.ico"
+	media="screen" />
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top">
@@ -30,8 +32,8 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="userLogin.jsp">登录</a></li>
-					<li><a href="userRegister.jsp">注册会员</a></li>
+					<li><a href="../userLogin.jsp">登录</a></li>
+					<li><a href="../userRegister.jsp">注册会员</a></li>
 				</ul>
 			</div>
 		</div>
@@ -47,108 +49,49 @@
 			<div class="row"></div>
 		</div>
 	</div>
-	<div style="padding: 10px 0;">
-		<div class="container">
-			<div class="row" style="border-bottom: 1px solid #eeeeee;">
-				<div class="col-md-2">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
-				</div>
-				<div class="col-md-2">
-					<h5 contenteditable="true">这里是商品的标题</h5>
-					<h5>价格：100.00</h5>
-					<h5>邮费：10.00</h5>
-					<h5>剩余：10件</h5>
-				</div>
-				<div class="col-md-5">
-					<!-- <a class="btn btn-info btn-xs">秒杀<br></a> -->
-				</div>
-				<div class="col-md-3" style="text-align: right;">
-					<a class="text-primary" href="#">进入XX店铺</a>
-					<h3 class="text-right"></h3>
-					<button type="button" class="btn btn-default">加入购物车</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div style="padding: 10px 0;">
-		<div class="container">
-			<div class="row" style="border-bottom: 1px solid #eeeeee;">
-				<div class="col-md-2">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
-				</div>
-				<div class="col-md-2">
-					<h5 contenteditable="true">这里是商品的标题</h5>
-					<h5>价格：100.00</h5>
-					<h5>邮费：10.00</h5>
-					<h5 class="text-danger">无货</h5>
-				</div>
-				<div class="col-md-5">
-					<!-- <a class="btn btn-info btn-xs">秒杀<br></a> -->
-				</div>
-				<div class="col-md-3" style="text-align: right;">
-					<a class="text-primary" href="#">进入XX店铺</a>
-					<h3 class="text-right"></h3>
-					<button type="button" class="btn btn-default" disabled="disabled">加入购物车</button>
+	<c:forEach items="${list_items}" var="item">
+		<div style="padding: 10px 0;">
+			<div class="container">
+				<div class="row" style="border-bottom: 1px solid #eeeeee;">
+					<div class="col-md-2">
+						<img src="picture/exp1.jpeg" class="img-responsive">
+					</div>
+					<div class="col-md-2">
+						<h5 contenteditable="false">${item.i_name}</h5>
+						<h5>价格：${item.i_price}</h5>
+						<h5>邮费：${item.i_postage}</h5>
+						<c:if test="${item.i_stock != 0}">
+							<h5>剩余：${item.i_stock}件</h5>
+						</c:if>
+						<c:if test="${item.i_stock == 0}">
+							<h5 class="text-danger">无货</h5>
+						</c:if>
+					</div>
+					<div class="col-md-5">
+						<c:if test="${item.i_iskill == 1}">
+							<a class="btn btn-info btn-xs">秒杀<br></a>
+						</c:if>
+					</div>
+					<div class="col-md-3" style="text-align: right;">
+						<a class="text-primary" href="#">进入${item.user.u_store}店铺</a>
+						<c:if test="${item.i_iskill == 1}">
+							<h5 class=" text-right">离开始还剩 30:00</h5>
+						</c:if>
+						<h3 class="text-right"></h3>
+						<c:if test="${item.i_iskill == 1}">
+							<button type="button" class="btn btn-default" style="color: #AF3030;">刷新</button>
+						</c:if>
+						<c:if test="${item.i_stock != 0 && item.i_iskill != 1}">
+							<button type="button" class="btn btn-default" onclick="">加入购物车</button>
+						</c:if>
+						<c:if test="${item.i_stock == 0 && item.i_iskill != 1}">
+							<button type="button" class="btn btn-default" disabled="disabled">加入购物车</button>
+						</c:if>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div style="padding: 10px 0;">
-		<div class="container">
-			<div class="row" style="border-bottom: 1px solid #eeeeee;">
-				<div class="col-md-2">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
-				</div>
-				<div class="col-md-2">
-					<h5 contenteditable="true">这里是商品的标题</h5>
-					<h5>价格：100.00</h5>
-					<h5>邮费：10.00</h5>
-					<h5>剩余：10件</h5>
-				</div>
-				<div class="col-md-5">
-					<a class="btn btn-info btn-xs">秒杀<br></a>
-				</div>
-				<div class="col-md-3" style="text-align: right;">
-					<a class="text-primary" href="#">进入XX店铺</a>
-					<h5 class=" text-right">离开始还剩 30:00</h5>
-					<h3 class="text-right"></h3>
-					<button type="button" class="btn btn-default"
-						style="color: #AF3030;">刷新</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div style="padding: 10px 0;">
-		<div class="container">
-			<div class="row" style="border-bottom: 1px solid #eeeeee;">
-				<div class="col-md-2">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
-				</div>
-				<div class="col-md-2">
-					<h5 contenteditable="true">这里是商品的标题</h5>
-					<h5>价格：100.00</h5>
-					<h5>邮费：10.00</h5>
-					<h5>剩余：10件</h5>
-				</div>
-				<div class="col-md-5">
-					<!-- <a class="btn btn-info btn-xs">秒杀<br></a> -->
-				</div>
-				<div class="col-md-3" style="text-align: right;">
-					<a class="text-primary" href="#">进入XX店铺</a>
-					<h3 class="text-right"></h3>
-					<button type="button" class="btn btn-default">加入购物车</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	</c:forEach>
 	<div style="padding: 10px 0;">
 		<div class="container">
 			<div class="row">

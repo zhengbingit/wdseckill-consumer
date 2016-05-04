@@ -36,7 +36,7 @@ response.setDateHeader("Expires",0);
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="#">注册</a></li>
-					<li><a href="#">登录<br></a></li>
+					<li><a href="userLogin.jsp">登录<br></a></li>
 				</ul>
 			</div>
 		</div>
@@ -120,7 +120,7 @@ response.setDateHeader("Expires",0);
 						</div>
 						<div class="row">
 							<div class="col-md-6 text-right">
-								<a class="btn btn-primary">回到首页</a>
+								<a class="btn btn-primary" href="itemsList.jsp">回到首页</a>
 							</div>
 							<div class="col-md-6">
 								<a class="btn btn-primary">完成注册</a>

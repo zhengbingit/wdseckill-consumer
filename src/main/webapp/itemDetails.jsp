@@ -12,7 +12,7 @@
 <link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen" />
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
-<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <title>电商秒杀平台—商品详情</title>
 <link href="css/itemDetails.css" rel="stylesheet" type="text/css">
 </head>
@@ -31,10 +31,10 @@
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="#">商品详情</a></li>
-					<li><a href="#">我的店铺<br></a></li>
-					<li><a href="#">购物车<br></a></li>
-					<li><a href="#">我的订单<br></a></li>
-					<li><a href="#">欢迎XX登录<br></a></li>
+					<li><a href="userItemsList.jsp">我的店铺<br></a></li>
+					<li><a href="userCarts.jsp">购物车<br></a></li>
+					<li><a href="userOrders.jsp">我的订单<br></a></li>
+					<li><a href="#">欢迎${sessionScope.user.u_name}登录<br></a></li>
 				</ul>
 			</div>
 		</div>

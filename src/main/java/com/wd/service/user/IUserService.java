@@ -20,6 +20,12 @@ public interface IUserService {
 	 * @param user
 	 * @return
 	 */
-	public boolean loginService(User user);
+	public User loginService(User user);
 	
+	/**
+	 * 根据用户名获得用户信息
+	 * @param u_name
+	 * @return
+	 */
+	public boolean getUserByName(String u_name);
 }

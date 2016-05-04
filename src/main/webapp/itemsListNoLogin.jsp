@@ -9,12 +9,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href="../css/userItemsList.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="css/userItemsList.css" rel="stylesheet" type="text/css">
 	<title>电商秒杀平台—商品列表</title>
-	<link rel="icon" type="image/x-icon" href="../logo/wd.ico" media="screen" />
+	<link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen" />
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top">
@@ -30,10 +30,8 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="userItemsList.jsp">我的店铺</a></li>
-					<li><a href="userCarts.jsp">购物车</a></li>
-					<li><a href="userOrders.jsp">我的订单</a></li>
-					<li><a href="#">欢迎${sessionScope.user.u_name}登录，余额${sessionScope.user.u_money}</a></li>
+					<li><a href="userLogin.jsp">登录</a></li>
+					<li><a href="userRegister.jsp">注册会员</a></li>
 				</ul>
 			</div>
 		</div>
@@ -49,39 +47,37 @@
 			<div class="row"></div>
 		</div>
 	</div>
-	<c:forEach items="${list_items}" var="item">
-		<div style="padding: 10px 0;">
-			<div class="container">
-				<div class="row" style="border-bottom: 1px solid #eeeeee;">
-					<div class="col-md-2">
-						<img
-							src="../picture/exp1.jpeg"
-							class="img-responsive">
-					</div>
-					<div class="col-md-2">
-						<h5 contenteditable="false">${item.i_name}</h5>
-						<h5>价格：${item.i_price}</h5>
-						<h5>邮费：${item.i_postage}</h5>
-						<h5>剩余：${item.i_stock}件</h5>
-					</div>
-					<div class="col-md-5">
-						<!-- <a class="btn btn-info btn-xs">秒杀<br></a> -->
-					</div>
-					<div class="col-md-3" style="text-align: right;">
-						<a class="text-primary" href="../item/listStoreItem.do?u_id=${item.user.u_id}">进入${item.user.u_store}店铺</a>
-						<h3 class="text-right"></h3>
-						<button type="button" class="btn btn-default">加入购物车</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</c:forEach>
 	<div style="padding: 10px 0;">
 		<div class="container">
 			<div class="row" style="border-bottom: 1px solid #eeeeee;">
 				<div class="col-md-2">
 					<img
-						src="../picture/exp1.jpeg"
+						src="picture/exp1.jpeg"
+						class="img-responsive">
+				</div>
+				<div class="col-md-2">
+					<h5 contenteditable="true">这里是商品的标题</h5>
+					<h5>价格：100.00</h5>
+					<h5>邮费：10.00</h5>
+					<h5>剩余：10件</h5>
+				</div>
+				<div class="col-md-5">
+					<!-- <a class="btn btn-info btn-xs">秒杀<br></a> -->
+				</div>
+				<div class="col-md-3" style="text-align: right;">
+					<a class="text-primary" href="#">进入XX店铺</a>
+					<h3 class="text-right"></h3>
+					<button type="button" class="btn btn-default">加入购物车</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="padding: 10px 0;">
+		<div class="container">
+			<div class="row" style="border-bottom: 1px solid #eeeeee;">
+				<div class="col-md-2">
+					<img
+						src="picture/exp1.jpeg"
 						class="img-responsive">
 				</div>
 				<div class="col-md-2">
@@ -106,7 +102,7 @@
 			<div class="row" style="border-bottom: 1px solid #eeeeee;">
 				<div class="col-md-2">
 					<img
-						src="../picture/exp1.jpeg"
+						src="picture/exp1.jpeg"
 						class="img-responsive">
 				</div>
 				<div class="col-md-2">
@@ -133,7 +129,7 @@
 			<div class="row" style="border-bottom: 1px solid #eeeeee;">
 				<div class="col-md-2">
 					<img
-						src="../picture/exp1.jpeg"
+						src="picture/exp1.jpeg"
 						class="img-responsive">
 				</div>
 				<div class="col-md-2">

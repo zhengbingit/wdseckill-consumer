@@ -17,7 +17,13 @@
 <link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen" />
 <script type="text/javascript">
 	function checkValues() {
-
+		var username = $("#user_name").val();
+		var password = $("#user_password").val();
+		if(username != "" && password != "") {
+			$("#userLoginForm").submit();
+		}else {
+			alert("登录失败！");
+		}
 	}
 </script>
 </head>
@@ -35,8 +41,8 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="#">注册</a></li>
-					<li><a href="#">登录<br></a></li>
+					<li class="active"><a href="userLogin.jsp">登录<br></a></li>
+					<li><a href="userRegister.jsp">注册</a></li>
 				</ul>
 			</div>
 		</div>
@@ -56,14 +62,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<form class="form-horizontal text-left" role="form" action=""
+					<form class="form-horizontal text-left" role="form" action="user/login.do" id="userLoginForm"
 						method="post">
 						<div class="form-group has-feedback" style="margin-left: 170px;">
 							<div class="col-sm-2" style="text-align: right;">
 								<label for="inputEmail3" class="control-label">*用户名：<br></label>
 							</div>
 							<div class="col-sm-10" style="width: 45%">
-								<input type="text" class="form-control" id="inputEmail3"
+								<input type="text" class="form-control" name="u_name" id="user_name"
 									placeholder="4-20个字母和数字组成"><span
 									class="fa fa-check form-control-feedback"></span>
 							</div>
@@ -76,7 +82,7 @@
 								<label for="inputEmail3" class="control-label">*密码：</label>
 							</div>
 							<div class="col-sm-10" style="width: 45%">
-								<input type="password" class="form-control" id="inputEmail3"
+								<input type="password" class="form-control" name="u_pwd" id="user_password"
 									placeholder="最长128个字符"><span
 									class="fa fa-check form-control-feedback"></span>
 							</div>
@@ -86,10 +92,10 @@
 						</div>
 						<div class="row">
 							<div class="col-md-6 text-right">
-								<a class="btn btn-primary">回到首页</a>
+								<a class="btn btn-primary" href="itemsList.jsp">回到首页</a>
 							</div>
 							<div class="col-md-6">
-								<a class="btn btn-primary">登录</a>
+								<a class="btn btn-primary" onclick="checkValues();">登录</a>
 							</div>
 						</div>
 					</form>

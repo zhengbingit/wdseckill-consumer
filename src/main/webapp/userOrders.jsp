@@ -17,7 +17,7 @@
 <title>电商秒杀平台—我的订单</title>
 </head>
 <body>
-	<div class="navbar navbar-default navbar-fixed-top">
+	<div class="navbar navbar-default ">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -31,9 +31,9 @@
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="#">我的订单</a></li>
-					<li><a href="#">购物车<br></a></li>
-					<li><a href="#">我的订单<br></a></li>
-					<li><a href="#">欢迎XX登录<br></a></li>
+					<li><a href="userCarts.jsp">购物车<br></a></li>
+					<li><a href="userItemsList.jsp">我的店铺<br></a></li>
+					<li><a href="#">欢迎${sessionScope.user.u_name}登录<br></a></li>
 				</ul>
 			</div>
 		</div>

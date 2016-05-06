@@ -9,11 +9,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen" />
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/x-icon" href="../logo/wd.ico"
+	media="screen" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<link href="../css/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
 <title>电商秒杀平台—我的订单</title>
 </head>
 <body>
@@ -31,8 +33,10 @@
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="#">我的订单</a></li>
-					<li><a href="userCarts.jsp">购物车<br></a></li>
-					<li><a href="userItemsList.jsp">我的店铺<br></a></li>
+					<li><a
+						href="../cart/listCart.do?u_id=${sessionScope.user.u_id}">购物车<br></a></li>
+					<li><a
+						href="../item/listStoreItem.do?u_id=${sessionScope.user.u_id}">我的店铺<br></a></li>
 					<li><a href="#">欢迎${sessionScope.user.u_name}登录<br></a></li>
 				</ul>
 			</div>
@@ -49,13 +53,32 @@
 			</div>
 		</div>
 	</div>
+	<c:forEach items="${list_orders}" var="order">
+		<div class="section" style="padding: 15px 0;">
+			<div class="container">
+				<div class="row" style="border-bottom: 1px solid #eeeeee;">
+					<div class="col-md-2">
+						<img src="picture/exp1.jpeg" class="img-responsive">
+					</div>
+					<div class="col-md-7">
+						<h5 contenteditable="false">${order.item.i_name}</h5>
+						<h5>价格：${order.item.i_price}</h5>
+						<h5>邮费：${order.item.i_postage}</h5>
+						<h5>已购买：${order.o_count}件</h5>
+					</div>
+					<div class="col-md-3 text-right">
+						<a class="text-primary text-right" href="../item/listStoreItem.do?u_id=${order.item.user.u_id}">进入${order.item.user.u_store}店铺</a>
+						<h3 class="text-right"></h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:forEach>
 	<div class="section" style="padding: 15px 0;">
 		<div class="container">
 			<div class="row" style="border-bottom: 1px solid #eeeeee;">
 				<div class="col-md-2">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
+					<img src="picture/exp1.jpeg" class="img-responsive">
 				</div>
 				<div class="col-md-7">
 					<h5 contenteditable="true">这里是商品的标题</h5>
@@ -74,9 +97,7 @@
 		<div class="container">
 			<div class="row" style="border-bottom: 1px solid #eeeeee;">
 				<div class="col-md-2">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
+					<img src="picture/exp1.jpeg" class="img-responsive">
 				</div>
 				<div class="col-md-7">
 					<h5 contenteditable="true">这里是商品的标题</h5>
@@ -95,30 +116,7 @@
 		<div class="container">
 			<div class="row" style="border-bottom: 1px solid #eeeeee;">
 				<div class="col-md-2">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
-				</div>
-				<div class="col-md-7">
-					<h5 contenteditable="true">这里是商品的标题</h5>
-					<h5>价格：100.00</h5>
-					<h5>邮费：10.00</h5>
-					<h5>已购买：10件</h5>
-				</div>
-				<div class="col-md-3">
-					<h5 class="text-primary text-right">进入XX店铺</h5>
-					<h3 class="text-right"></h3>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="section" style="padding: 15px 0;">
-		<div class="container">
-			<div class="row" style="border-bottom: 1px solid #eeeeee;">
-				<div class="col-md-2">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
+					<img src="picture/exp1.jpeg" class="img-responsive">
 				</div>
 				<div class="col-md-7">
 					<h5 contenteditable="true">这里是商品的标题</h5>

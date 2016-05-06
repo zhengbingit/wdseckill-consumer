@@ -16,6 +16,18 @@
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/> 
 		结果视图的前缀 <property name="prefix" value="/"/> 结果视图的后缀 <property name="suffix" 
 		value=".jsp"/> </bean> -->
+	<!-- 配置文件上传 begin -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 请求的编码格式，默认为ISO-8859-1 -->
+		<!-- defaultEncoding 必须和用户的JSP的pageEncoding属性一致，以便正确读取表单的内容 -->
+		<property name="defaultEncoding" value="UTF-8"/>
+		<!-- 上传文件大小上限，单位为字节（5MB） -->
+		<property name="maxUploadSize" value="5242880"/>
+		<!-- 上传文件的临时路径 -->
+		<!-- uploadTempDir 是文件上传过程所使用的临时目录，文件上传完成后，临时目录中的临时文件会被自动清除 -->
+		<property name="uploadTempDir" value="upload/temp"/>
+	</bean>
+	
 	<!-- 扫描该包中的所有注解 -->
 	<context:component-scan base-package="com.wd.control" />
 	<mvc:interceptors>

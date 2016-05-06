@@ -9,39 +9,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen" />
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/x-icon" href="../logo/wd.ico" media="screen" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <title>电商秒杀平台—购物车</title>
 <script type="text/javascript">
 	function checkAll() {
-		if($("#checkAllButton").prop("checked")) {
+		if ($("#checkAllButton").prop("checked")) {
 			$(".checkBoxs").each(function() {
-				$(this).prop("checked",true);
+				$(this).prop("checked", true);
 			});
-		}else {
+		} else {
 			$(".checkBoxs").each(function() {
-				$(this).prop("checked",false);
+				$(this).prop("checked", false);
 			});
 		}
 	}
-	$(function(){
+	$(function() {
 		$(".checkBoxs").change(function() {
-			if(!$(this).prop("checked")) {
-				$("#checkAllButton").prop("checked",false);
+			if (!$(this).prop("checked")) {
+				$("#checkAllButton").prop("checked", false);
 			}
 			var a = 0;
 			var b = 0;
 			$(".checkBoxs").each(function() {
 				a++;
-				if($(this).prop("checked")) {
+				if ($(this).prop("checked")) {
 					b++;
 				}
 			});
-			if(a == b) {
-				$("#checkAllButton").prop("checked",true);
+			if (a == b) {
+				$("#checkAllButton").prop("checked", true);
 			}
 		});
 	});
@@ -62,8 +62,10 @@
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="#">购物车</a></li>
-					<li><a href="userItemsList.jsp">我的店铺<br></a></li>
-					<li><a href="userOrders.jsp">我的订单<br></a></li>
+					<li><a
+						href="../item/listStoreItem.do?u_id=${sessionScope.user.u_id}">我的店铺<br></a></li>
+					<li><a
+						href="../order/listOrder.do?u_id=${sessionScope.user.u_id}">我的订单<br></a></li>
 					<li><a href="#">欢迎${sessionScope.user.u_name}登录<br></a></li>
 				</ul>
 			</div>
@@ -84,7 +86,8 @@
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10" style="margin-left: 1.6%;">
 								<div class="checkbox">
-									<label><input id="checkAllButton" type="checkbox" onclick="checkAll();">全选&nbsp;</label>
+									<label><input id="checkAllButton" type="checkbox"
+										onclick="checkAll();">全选&nbsp;</label>
 								</div>
 							</div>
 						</div>
@@ -93,6 +96,40 @@
 			</div>
 		</div>
 	</div>
+	<c:forEach items="${list_carts}" var="cart">
+		<div style="padding: 10px 0;">
+			<div class="container">
+				<div class="row" style="border-bottom: 1px solid #eeeeee;">
+					<div class="col-md-1" style="width: 1.3%;">
+						<form class="form-horizontal" role="form">
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<div class="checkbox">
+										<label><input type="checkbox" class="checkBoxs"></label>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="col-md-3" style="width: 20%;">
+						<img src="picture/exp1.jpeg" class="img-responsive">
+					</div>
+					<div class="col-md-5">
+						<h5 contenteditable="false">${cart.item.i_name}</h5>
+						<h5>价格：${cart.item.i_price}</h5>
+						<h5>邮费：${cart.item.i_postage}</h5>
+						<h5>购买件数：${cart.c_count}件</h5>
+					</div>
+					<div class="col-md-3 text-right" style="width: 35%;">
+						<a class="text-primary text-right" href="../item/listStoreItem.do?u_id=${cart.item.user.u_id}">进入${cart.item.user.u_store}店铺</a>
+						<h3 class="text-right"></h3>
+						<h5 class="text-right">销量：${cart.item.i_sales}件</h5>
+						<a class="btn btn-info btn-sm">购买</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:forEach>
 	<div style="padding: 10px 0;">
 		<div class="container">
 			<div class="row" style="border-bottom: 1px solid #eeeeee;">
@@ -108,9 +145,7 @@
 					</form>
 				</div>
 				<div class="col-md-3" style="width: 20%;">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
+					<img src="picture/exp1.jpeg" class="img-responsive">
 				</div>
 				<div class="col-md-5">
 					<h5 contenteditable="false">这里是商品的标题</h5>
@@ -142,43 +177,7 @@
 					</form>
 				</div>
 				<div class="col-md-3" style="width: 20%;">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
-				</div>
-				<div class="col-md-5">
-					<h5 contenteditable="false">这里是商品的标题</h5>
-					<h5>价格：100.00</h5>
-					<h5>邮费：10.00</h5>
-					<h5>购买件数：10件</h5>
-				</div>
-				<div class="col-md-3 text-right" style="width: 35%;">
-					<h5 class="text-primary text-right">进入XX店铺</h5>
-					<h3 class="text-right"></h3>
-					<h5 class="text-right">销量：10件</h5>
-					<a class="btn btn-info btn-sm">购买</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div style="padding: 10px 0;">
-		<div class="container">
-			<div class="row" style="border-bottom: 1px solid #eeeeee;">
-				<div class="col-md-1" style="width: 1.3%;">
-					<form class="form-horizontal" role="form">
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<div class="checkbox">
-									<label><input type="checkbox" class="checkBoxs"></label>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="col-md-3" style="width: 20%;">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
+					<img src="picture/exp1.jpeg" class="img-responsive">
 				</div>
 				<div class="col-md-5">
 					<h5 contenteditable="false">这里是商品的标题</h5>

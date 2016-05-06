@@ -37,7 +37,7 @@ public class CartController {
 	public String listCart(ModelMap model, HttpServletRequest request) {
 		List<Cart> list_carts = cartService.listCart(Integer.parseInt(request.getParameter("u_id")));
 		model.addAttribute("list_carts", list_carts);
-		return "";
+		return "/userCarts.jsp";
 	}
 	
 }

@@ -30,9 +30,9 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="userItemsList.jsp">我的店铺</a></li>
-					<li><a href="userCarts.jsp">购物车</a></li>
-					<li><a href="userOrders.jsp">我的订单</a></li>
+					<li><a href="../item/listStoreItem.do?u_id=${sessionScope.user.u_id}">我的店铺</a></li>
+					<li><a href="../cart/listCart.do?u_id=${sessionScope.user.u_id}">购物车</a></li>
+					<li><a href="../order/listOrder.do?u_id=${sessionScope.user.u_id}">我的订单</a></li>
 					<li><a href="#">欢迎${sessionScope.user.u_name}登录，余额${sessionScope.user.u_money}</a></li>
 				</ul>
 			</div>
@@ -81,7 +81,7 @@
 						</c:if>
 						<h3 class="text-right"></h3>
 						<c:if test="${item.i_iskill == 1}">
-							<button type="button" class="btn btn-default" style="color: #AF3030;">刷新</button>
+							<button type="button" class="btn btn-default" style="color: #AF3030;" onclick="location.reload()">刷新</button>
 						</c:if>
 						<c:if test="${item.i_stock != 0 && item.i_iskill != 1}">
 							<button type="button" class="btn btn-default" onclick="">加入购物车</button>

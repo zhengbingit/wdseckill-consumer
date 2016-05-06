@@ -9,12 +9,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen" />
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<link rel="icon" type="image/x-icon" href="../logo/wd.ico" media="screen" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <title>电商秒杀平台—商品详情</title>
-<link href="css/itemDetails.css" rel="stylesheet" type="text/css">
+<link href="../css/itemDetails.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top">
@@ -31,9 +31,9 @@
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="#">商品详情</a></li>
-					<li><a href="userItemsList.jsp">我的店铺<br></a></li>
-					<li><a href="userCarts.jsp">购物车<br></a></li>
-					<li><a href="userOrders.jsp">我的订单<br></a></li>
+					<li><a href="../item/listStoreItem.do?u_id=${sessionScope.user.u_id}">我的店铺<br></a></li>
+					<li><a href="../cart/listCart.do?u_id=${sessionScope.user.u_id}">购物车<br></a></li>
+					<li><a href="../order/listOrder.do?u_id=${sessionScope.user.u_id}">我的订单<br></a></li>
 					<li><a href="#">欢迎${sessionScope.user.u_name}登录<br></a></li>
 				</ul>
 			</div>
@@ -46,7 +46,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<a class="btn btn-primary">返回</a>
+					<a class="btn btn-primary" onclick="history.back()">返回</a>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
@@ -65,17 +65,28 @@
 						class="img-responsive">
 				</div>
 				<div class="col-md-5">
-					<h1>这里是商品的标题</h1>
-					<h3>价格：100.00</h3>
-					<h3>邮费：10.00</h3>
-					<h3 class="text-danger">剩余：3件 无货</h3>
+					<h1>${item.i_name}</h1>
+					<h3>价格：${item.i_price}</h3>
+					<h3>邮费：${item.i_postage}</h3>
+					<c:if test="${item.i_stock != 0}">
+						<h3 class="text-danger">剩余：${item.i_stock}件</h3>
+					</c:if>
+					<c:if test="${item.i_stock == 0}">
+						<h3 class="text-danger">无货</h3>
+					</c:if>
 					<hr>
-					<h3 class="text-right">离开始还剩 30:00</h3>
-					<a class="btn btn-default">加入购物车</a><a class="btn btn-default">购买</a>
+					<c:if test="${item.i_iskill == 1 && item.i_stock != 0}">
+						<h3 class="text-right">离开始还剩 ${surplusTime}</h3>
+					</c:if>
+					<a class="btn btn-default">加入购物车</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="btn btn-default">购买</a>
 					<div class="btn-group"></div>
 				</div>
 				<div class="col-md-1">
-					<a class="btn btn-info">秒杀</a>
+					<c:if test="${item.i_iskill == 1}">
+						<a class="btn btn-info">秒杀</a>
+					</c:if>
 				</div>
 			</div>
 		</div>
@@ -90,7 +101,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<p>
-						商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述<br>商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述
+						${item.i_content}
 					</p>
 				</div>
 			</div>

@@ -9,19 +9,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
-<link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen" />
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/x-icon" href="../logo/wd.ico"
+	media="screen" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<link href="../css/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
 <title>电商秒杀平台—商品发布</title>
 <script type="text/javascript">
-	function secKill() {
-		if($("#isSecKill").prop("checked")) {
+	$(function() {
+		if ($("#isSecKill").prop("checked")) {
+			$("#isSecKill").val(1);
 			$("#secKillTime").attr("disabled", false);
-		}else {
+		}
+	});
+	function secKill() {
+		if ($("#isSecKill").prop("checked")) {
+			$("#isSecKill").val(1);
+			$("#secKillTime").attr("disabled", false);
+		} else {
+			$("#isSecKill").val(0);
 			$("#secKillTime").attr("disabled", true);
 		}
+	}
+	function formCheck() {
+		$("#itemForm").submit();
 	}
 </script>
 </head>
@@ -40,7 +53,8 @@
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="#">商品发布</a></li>
-					<li><a href="userItemsList.jsp">我的店铺<br></a></li>
+					<li><a
+						href="../item/listStoreItem.do?u_id=${sessionScope.user.u_id}">我的店铺<br></a></li>
 					<li><a href="userCarts.jsp">购物车<br></a></li>
 					<li><a href="userOrders.jsp">我的订单<br></a></li>
 					<li><a href="#">欢迎${sessionScope.user.u_name}登录<br></a></li>
@@ -62,16 +76,21 @@
 	<div class="col-md-12 text-right"></div>
 	<div class="section">
 		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-right">
-					<form class="form-horizontal text-left" role="form">
+			<form class="form-horizontal text-left" id="itemForm"
+				action="../item/updateItem.do" method="post"
+				enctype="multipart/form-data">
+				<input name="i_id" value="${item.i_id}" type="hidden"></input>
+				<input name="u_id" value="${item.u_id}" type="hidden"></input>
+				<div class="row">
+					<div class="col-md-12 text-right">
 						<div class="form-group has-feedback">
 							<div class="col-sm-2" style="text-align: right;">
 								<label for="inputEmail3" class="control-label">*商品名称：<br></label>
 							</div>
 							<div class="col-sm-10" style="width: 50%;">
-								<input type="text" class="form-control" id="inputEmail3"  onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"
-									placeholder="4-20个字母和数字组成">
+								<input type="text" class="form-control" id="inputEmail3"
+									onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" name="i_name"
+									value="${item.i_name}" placeholder="4-20个字母和数字组成" ></input>
 							</div>
 						</div>
 						<div class="form-group has-feedback">
@@ -79,8 +98,11 @@
 								<label for="inputEmail3" class="control-label">*价格：</label>
 							</div>
 							<div class="col-sm-10" style="width: 50%;">
-								<input type="text" class="form-control" id="inputEmail3" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')"
-									placeholder="最大999999999.99">
+								<input type="text" class="form-control" id="inputEmail3"
+									onkeyup="if(isNaN(value))execCommand('undo')"
+									onafterpaste="if(isNaN(value))execCommand('undo')"
+									name="i_price" value="${item.i_price}"
+									placeholder="最大999999999.99"></input>
 							</div>
 						</div>
 						<div class="form-group has-feedback">
@@ -88,8 +110,11 @@
 								<label for="inputEmail3" class="control-label">*邮费：</label>
 							</div>
 							<div class="col-sm-10" style="width: 50%;">
-								<input type="text" class="form-control" id="inputEmail3" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')"
-									placeholder="最大99999.99">
+								<input type="text" class="form-control" id="inputEmail3"
+									onkeyup="if(isNaN(value))execCommand('undo')"
+									onafterpaste="if(isNaN(value))execCommand('undo')"
+									name="i_postage" value="${item.i_postage}"
+									placeholder="最大99999.99"></input>
 							</div>
 						</div>
 						<div class="form-group has-feedback">
@@ -97,83 +122,82 @@
 								<label for="inputEmail3" class="control-label">*库存：</label>
 							</div>
 							<div class="col-sm-10" style="width: 50%;">
-								<input type="text" class="form-control" id="inputEmail3" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')"
-									placeholder="最大99999">
+								<input type="text" class="form-control" id="inputEmail3"
+									onkeyup="if(isNaN(value))execCommand('undo')"
+									onafterpaste="if(isNaN(value))execCommand('undo')"
+									name="i_stock" value="${item.i_stock}" placeholder="最大99999"></input>
 							</div>
 						</div>
-					</form>
-					<hr>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<h3 contenteditable="true">商品描述：</h3>
-					<div class="col-md-12">
-						<form class="form-horizontal" role="form">
-							<div class="form-group">
-								<div class="col-sm-10">
-									<textarea class="form-control"></textarea>
-								</div>
-							</div>
-						</form>
+						<hr></hr>
 					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<h3>描述图片：</h3>
-					<form class="form-horizontal" role="form">
-						<div class="form-group">
-							<div class="col-sm-10">
-								<input type="file">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 contenteditable="true">商品描述：</h3>
+						<div class="col-md-12">
+							<div class="form-group">
+								<div class="col-sm-10">
+									<textarea class="form-control" name="i_content">${item.i_content}</textarea>
+								</div>
 							</div>
 						</div>
-						<div class="form-group">
-							<div class="col-sm-10">
-								<input type="file">
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-10">
-								<input type="file">
-							</div>
-						</div>
-					</form>
-					<hr>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<form class="form-horizontal text-left" role="form">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>描述图片：</h3>
+						<div class="form-group">
+							<div class="col-sm-10">
+								<input type="file" name="files"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-10">
+								<input type="file" name="files"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-10">
+								<input type="file" name="files"></input>
+							</div>
+						</div>
+						<hr>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<div class="checkbox">
-									<label><input id="isSecKill" type="checkbox" onclick="secKill();">是否秒杀商品</label>
+									<label> <input name="i_iskill" id="isSecKill"
+										type="checkbox" onclick="secKill();"
+										<c:if test="${item.i_iskill == 1}">checked="checked"</c:if>></input>是否秒杀商品
+									</label>
 								</div>
 							</div>
 						</div>
-					</form>
-					<form class="form-horizontal" role="form">
 						<div class="form-group">
 							<div class="col-sm-2">
 								<label for="inputEmail3" class="control-label">秒杀开始时间：</label>
 							</div>
 							<div class="col-sm-10" style="width: 50%;">
-								<input type="email" class="form-control" id="secKillTime" disabled="disabled"
-									placeholder="YYYY-MM-DD HH:mm:ss">
+								<input type="email" class="form-control" id="secKillTime"
+									disabled="disabled" name="i_killtime"
+									value="${item.i_killtime}" placeholder="YYYY-MM-DD HH:mm:ss"></input>
 							</div>
 						</div>
-					</form>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 text-right">
-					<a class="btn btn-primary">回到店铺</a>
+				<div class="row">
+					<div class="col-md-6 text-right">
+						<a class="btn btn-primary"
+							href="../item/listStoreItem.do?u_id=${sessionScope.user.u_id}">回到店铺</a>
+					</div>
+					<div class="col-md-6">
+						<a class="btn btn-primary" onclick="formCheck();">完成发布</a>
+					</div>
 				</div>
-				<div class="col-md-6">
-					<a class="btn btn-primary">完成发布</a>
-				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 	<footer class="section section-primary" style="padding: 0px 0;">
@@ -182,7 +206,7 @@
 				<div class="col-sm-6">
 					<h1>电商秒杀平台</h1>
 					<p>
-						郑斌&nbsp;&nbsp;王倩倩&nbsp;&nbsp;张静娜&nbsp;&nbsp;王泰隆<br> <br>
+						郑斌&nbsp;&nbsp;王倩倩&nbsp;&nbsp;张静娜&nbsp;&nbsp;王泰隆<br/></br> <br></br>
 					</p>
 				</div>
 				<!-- <div class="col-sm-6">

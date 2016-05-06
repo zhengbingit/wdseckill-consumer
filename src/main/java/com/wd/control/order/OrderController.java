@@ -26,14 +26,22 @@ public class OrderController {
 	 * @param orders
 	 * @return
 	 */
+	@RequestMapping("/addOrder")
 	public String addOrder(Orders orders) {
 		orderService.addOrdersService(orders);
 		return "";
 	}
 	
+	/**
+	 * 获得订单条目
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/listOrder")
 	public String listOrder(ModelMap model, HttpServletRequest request) {
 		List<Orders> list_orders = orderService.listOrdersService(Integer.parseInt(request.getParameter("u_id")));
 		model.addAttribute("list_orders", list_orders);
-		return "";
+		return "/userOrders.jsp";
 	}
 }

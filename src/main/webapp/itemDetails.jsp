@@ -26,7 +26,7 @@
 						class="icon-bar"></span><span class="icon-bar"></span><span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>电商秒杀平台</span></a>
+				<a class="navbar-brand" href="../item/listItem.do"><span>电商秒杀平台</span></a>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -60,9 +60,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
+					<img src="../upload/${item.i_img1}" class="img-responsive"></img>
 				</div>
 				<div class="col-md-5">
 					<h1>${item.i_name}</h1>
@@ -111,9 +109,16 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8">
-					<img
-						src="picture/exp1.jpeg"
-						class="img-responsive">
+					<img src="../upload/${item.i_img2}" class="img-responsive"></img>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<img src="../upload/${item.i_img3}" class="img-responsive"></img>
 				</div>
 			</div>
 		</div>

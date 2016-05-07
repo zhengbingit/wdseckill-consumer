@@ -37,7 +37,7 @@
 						class="icon-bar"></span><span class="icon-bar"></span><span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>电商秒杀平台</span></a>
+				<a class="navbar-brand" href="../item/listItem.do"><span>电商秒杀平台</span></a>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">

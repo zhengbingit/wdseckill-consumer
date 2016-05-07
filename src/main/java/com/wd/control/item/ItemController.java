@@ -2,24 +2,27 @@ package com.wd.control.item;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.collections.set.SynchronizedSet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.wd.entity.Item;
 import com.wd.entity.User;
 import com.wd.service.items.IItemService;
 
+@SuppressWarnings("deprecation")
 @Controller
 @RequestMapping("/item")
 public class ItemController {
@@ -28,6 +31,13 @@ public class ItemController {
 
 	public void setItemService(IItemService itemService) {
 		this.itemService = itemService;
+	}
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 
 	/**
@@ -39,26 +49,85 @@ public class ItemController {
 	 * @throws IllegalStateException
 	 */
 	@RequestMapping("/addItem")
-	public String addItem(@RequestParam("file") CommonsMultipartFile file, Item item, HttpServletRequest request)
+	public String addItem(@RequestParam MultipartFile[] files, Item item, HttpServletRequest request)
 			throws IllegalStateException, IOException {
+		String[] i_imgs = { "logo.png", "logo.png", "logo.png" };
 		// 文件类型
-		String type = file.getOriginalFilename();
-		type = type.substring(type.lastIndexOf(".") + 1);
-		// 文件名
-		Date date = new Date();
-		StringBuffer pic = new StringBuffer();
-		pic.append(date.getTime());
-		pic.append(".");
-		pic.append(type);
+		if (files != null && files.length > 0) {
+			for (int i = 0; i < files.length && !files[i].isEmpty(); i++) {
+				System.out.println("----"+files[i].isEmpty());
+				String type = files[i].getOriginalFilename();
+				type = type.substring(type.lastIndexOf(".") + 1);
+				// 文件名
+				Date date = new Date();
+				StringBuffer pic = new StringBuffer();
+				pic.append(date.getTime());
+				pic.append(".");
+				pic.append(type);
+				// 获得保存文件路径
+				String path = request.getRealPath("/upload");
+				// 输出文件到本地
+				System.out.println(path);
+				files[i].transferTo(new File(path + "/" + pic.toString()));
+				i_imgs[i] = pic.toString();
+			}
+		}
+		
+		item.setI_img1(i_imgs[0]);
+		item.setI_img2(i_imgs[1]);
+		item.setI_img3(i_imgs[2]);
+		item.setI_time(new Date());
 
-		@SuppressWarnings("deprecation")
-		String path = request.getRealPath("/upload");
-
-		file.transferTo(new File(path + "/" + pic.toString()));
 		itemService.addItemService(item);
+
 		User user = (User) request.getSession().getAttribute("user");
 		int u_id = user.getU_id();
-		return "/item/listStoreItem.do?u_id=" + u_id;
+
+		return "redirect:/item/listStoreItem.do?u_id=" + u_id;
+	}
+
+	/**
+	 * 更新商品详情
+	 * 
+	 * @param item
+	 * @return
+	 * @throws IOException
+	 * @throws IllegalStateException
+	 */
+	@RequestMapping("/updateItem")
+	public String updateItem(@RequestParam MultipartFile[] files, Item item, HttpServletRequest request)
+			throws IllegalStateException, IOException {
+		String[] i_imgs = { "logo.png", "logo.png", "logo.png" };
+		// 文件类型
+		if (files != null && files.length > 0) {
+			for (int i = 0; i < files.length; i++) {
+				if(!files[i].isEmpty()) {
+					String type = files[i].getOriginalFilename();
+					type = type.substring(type.lastIndexOf(".") + 1);
+					// 文件名
+					Date date = new Date();
+					StringBuffer pic = new StringBuffer();
+					pic.append(date.getTime());
+					pic.append(".");
+					pic.append(type);
+					// 获得保存文件路径
+					String path = request.getRealPath("/upload");
+					// 输出文件到本地
+					files[i].transferTo(new File(path + "/" + pic.toString()));
+					i_imgs[i] = pic.toString();
+				}
+			}
+		}
+		item.setI_img1(i_imgs[0]);
+		item.setI_img2(i_imgs[1]);
+		item.setI_img3(i_imgs[2]);
+		item.setI_time(new Date());
+		
+		// 更新数据库
+		System.out.println("更新商品："+itemService.editItemService(item));
+		User user = (User) request.getSession().getAttribute("user");
+		int u_id = user.getU_id();
+		return "redirect:/item/listStoreItem.do?u_id=" + u_id;
 	}
 
 	/**
@@ -71,9 +140,8 @@ public class ItemController {
 	public String deleteItem(HttpServletRequest request) {
 		int u_id = Integer.parseInt(request.getParameter("u_id"));
 		int i_id = Integer.parseInt(request.getParameter("i_id"));
-		System.out.println(u_id + "--" + i_id);
-		System.out.println(itemService.deleteItemService(i_id));
-		return "/item/listStoreItem.do?u_id=" + u_id;
+		System.out.println("删除商品："+itemService.deleteItemService(i_id));
+		return "redirect:/item/listStoreItem.do?u_id=" + u_id;
 	}
 
 	/**
@@ -89,7 +157,6 @@ public class ItemController {
 		model.addAttribute("item", item);
 		if (item.getI_killtime() != null) {
 			String surplusTime = surplusTime(item.getI_killtime());
-			System.out.println(surplusTime);
 			model.addAttribute("surplusTime", surplusTime);
 		}
 		return "/itemDetails.jsp";
@@ -111,58 +178,7 @@ public class ItemController {
 			String surplusTime = surplusTime(item.getI_killtime());
 			model.addAttribute("surplusTime", surplusTime);
 		}
-		return "/itemsRelease.jsp";
-	}
-
-	/**
-	 * 更新商品详情
-	 * 
-	 * @param item
-	 * @return
-	 * @throws IOException 
-	 * @throws IllegalStateException 
-	 */
-	@RequestMapping("/updateItem")
-	public String updateItem(@RequestParam MultipartFile[] files, Item item, HttpServletRequest request) throws IllegalStateException, IOException {
-		String[] i_imgs = {"1.jpg","2.jpg","3.jpg"};
-		// 文件类型
-		if(files != null && files.length > 0) {
-			for (int i = 0; i < files.length; i++) {
-				String type = files[i].getOriginalFilename();
-				type = type.substring(type.lastIndexOf(".") + 1);
-				// 文件名
-				Date date = new Date();
-				StringBuffer pic = new StringBuffer();
-				pic.append(date.getTime());
-				pic.append(".");
-				pic.append(type);
-				//获得保存文件路径
-				@SuppressWarnings("deprecation")
-				String path = request.getRealPath("/upload");
-				//输出文件到本地
-				System.out.println(path);
-				files[i].transferTo(new File(path + "/" + pic.toString()));
-				if(!files[i].isEmpty()) {
-					i_imgs[i] = pic.toString();
-				}
-			}
-		}
-		if(!i_imgs[0].isEmpty()) {
-			item.setI_img1(i_imgs[0]);
-		}
-		if(!i_imgs[1].isEmpty()) {
-			item.setI_img2(i_imgs[1]);
-		}
-		if(!i_imgs[2].isEmpty()) {
-			item.setI_img3(i_imgs[2]);
-		}
-		item.setI_time(new Date());
-		System.out.println(item);
-		//更新数据库
-		System.out.println(itemService.editItemService(item));
-		User user = (User) request.getSession().getAttribute("user");
-		int u_id = user.getU_id();
-		return "/item/listStoreItem.do?u_id=" + u_id;
+		return "/itemsUpdate.jsp";
 	}
 
 	/**
@@ -172,7 +188,14 @@ public class ItemController {
 	 */
 	@RequestMapping("/listItem")
 	public String listItem(ModelMap model) {
-		model.addAttribute("list_items", itemService.listItemsService());
+		List<Item> list_items = itemService.listItemsService();
+		for(Item item : list_items) {
+			Date date2 = item.getI_killtime();
+			if (date2 != null) {
+				item.setSurplustime(surplusTime(date2));
+			}
+		}
+		model.addAttribute("list_items", list_items);
 		return "/itemsList.jsp";
 	}
 
@@ -184,7 +207,14 @@ public class ItemController {
 	 */
 	@RequestMapping("/listItemNoLogin")
 	public String listItemNoLogin(ModelMap model) {
-		model.addAttribute("list_items", itemService.listItemsNoLoginService());
+		List<Item> list_items = itemService.listItemsNoLoginService();
+		for(Item item : list_items) {
+			Date date2 = item.getI_killtime();
+			if (date2 != null) {
+				item.setSurplustime(surplusTime(date2));
+			}
+		}
+		model.addAttribute("list_items", list_items);
 		return "/itemsListNoLogin.jsp";
 	}
 

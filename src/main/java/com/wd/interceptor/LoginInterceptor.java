@@ -37,10 +37,11 @@ public class LoginInterceptor implements HandlerInterceptor {
 		// 判断是否已经登录
 		Object user = request.getSession().getAttribute("user");
 		System.out.println("获得Session:"+user);
+		System.out.println("url:"+url);
 		if (user != null) {
 			return true;
 		}
-		if(url.endsWith("listItemNoLogin.do")) {
+		if(url.endsWith("listItemNoLogin.do") || url.endsWith("login.do") || url.endsWith("register.do")) {
 			return true;
 		}
 		// 如果没有登录，限制访问的页面
@@ -52,7 +53,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		}
 		
 		// 如果既没有登录，当前请求也不在允许的List内，跳转到登录页面
-		response.sendRedirect(request.getContextPath() + "/userLogin.jsp");
+		response.sendRedirect(request.getContextPath() + "/user/login.do");
 		return false;
 	}
 

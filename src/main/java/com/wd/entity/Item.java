@@ -3,6 +3,8 @@ package com.wd.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Item implements Serializable{
 
 	private static final long serialVersionUID = -6186112737566104327L;
@@ -18,12 +20,14 @@ public class Item implements Serializable{
 	private double i_postage;
 	private String i_content;
 	private int i_iskill;
+	
+	@DateTimeFormat (pattern = "yyyy-MM-dd")
 	private Date i_killtime;
+	
 	private Date i_time;
 	private int u_id;
 	private User user;
 	private String surplustime;
-	
 	public int getI_id() {
 		return i_id;
 	}
@@ -127,10 +131,6 @@ public class Item implements Serializable{
 				+ i_postage + ", i_content=" + i_content + ", i_iskill=" + i_iskill + ", i_killtime=" + i_killtime
 				+ ", i_time=" + i_time + ", u_id=" + u_id + ", user=" + user + ", surplustime=" + surplustime + "]";
 	}
-	public Item() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	public Item(int i_id, String i_name, String i_img1, String i_img2, String i_img3, double i_price, int i_stock,
 			int i_sales, double i_postage, String i_content, int i_iskill, Date i_killtime, Date i_time, int u_id,
 			User user, String surplustime) {
@@ -152,4 +152,8 @@ public class Item implements Serializable{
 		this.user = user;
 		this.surplustime = surplustime;
 	}
+	public Item() {
+		super();
+	}
+	
 }

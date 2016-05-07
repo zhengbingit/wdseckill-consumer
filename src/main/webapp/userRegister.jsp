@@ -16,8 +16,54 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 <link rel="icon" type="image/x-icon" href="logo/wd.ico" media="screen"/>
 <script type="text/javascript">
-	function checkValues() {
-		
+	$(function(){
+		if($("#form_u_issell").val() == 0) {
+			$("#form_u_store").val("");
+		}
+	});
+	function submitForm() {
+		var pass = true;
+		if(checkValues(pass)) {
+			$("#formRegister").submit();
+		}else {
+			return ;
+		}
+	}
+	function checkValues(pass) {
+		if($("#form_u_name").val() == "") {
+			pass = false;
+			$("#warn_u_name").attr("style","color: red;");
+		}else {
+			$("#warn_u_name").attr("style","display: none;");
+		}
+		if($("#form_u_pwd").val() == "") {
+			pass = false;
+			$("#warn_u_pwd").attr("style","color: red;");
+		}else {
+			$("#warn_u_pwd").attr("style","display: none;");
+		}
+		if($("#form_u_pwd_check").val() != $("#form_u_pwd").val()) {
+			pass = false;
+			$("#warn_u_pwd_check").attr("style","color: red;");
+		}else {
+			$("#warn_u_pwd_check").attr("style","display: none;");
+		}
+		if($("#form_u_issell").val() == 1 && $("#form_u_store").val() == "") {
+			pass = false;
+			$("#warn_u_store").attr("style","color: red;");
+		}else {
+			$("#warn_u_store").attr("style","display: none;");
+		}
+		return pass;
+	}
+	function userIsSell() {
+		if($("#form_u_issell").prop("checked")) {
+			$("#form_u_issell").val(1);
+			$("#form_u_store").attr("disabled",false);
+		} else {
+			$("#form_u_issell").val(0);
+			$("#form_u_store").attr("disabled",true);
+		}
 	}
 </script>
 </head>
@@ -31,12 +77,12 @@
 						class="icon-bar"></span><span class="icon-bar"></span><span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>电商秒杀平台</span></a>
+				<a class="navbar-brand" href="item/listItem.do"><span>电商秒杀平台</span></a>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="#">注册</a></li>
-					<li><a href="userLogin.jsp">登录<br></a></li>
+					<li><a href="user/login.do">登录<br></a></li>
 				</ul>
 			</div>
 		</div>
@@ -56,18 +102,18 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<form class="form-horizontal text-left" role="form" action="" method="post">
+					<form class="form-horizontal text-left" role="form" action="user/register.do" method="post" id="formRegister">
 						<div class="form-group has-feedback" style="margin-left: 170px;">
 							<div class="col-sm-2" style="text-align: right;">
 								<label for="inputEmail3" class="control-label">*用户名：<br></label>
 							</div>
 							<div class="col-sm-10" style="width: 45%">
-								<input type="text" class="form-control" id="inputEmail3"
-									placeholder="4-20个字母和数字组成">
-									<span class="fa fa-check form-control-feedback"></span>
+								<input type="text" class="form-control checkValue" id="form_u_name"
+									name="u_name" placeholder="4-20个字母和数字组成"></input>
+									<!-- <span class="fa fa-check form-control-feedback"></span> -->
 							</div>
 							<div class="col-sm-offset-2 col-sm-10">
-								<!-- <p class="help-block">Example block-level help text here.</p> -->
+								<p id="warn_u_name" class="help-block" style="color:red; display: none;">用户名信息不能为空</p>
 							</div>
 						</div>
 						<div class="form-group has-feedback" style="margin-left: 170px;">
@@ -75,24 +121,24 @@
 								<label for="inputEmail3" class="control-label">*密码：</label>
 							</div>
 							<div class="col-sm-10" style="width: 45%">
-								<input type="password" class="form-control" id="inputEmail3"
-									placeholder="最长128个字符"><span
-									class="fa fa-check form-control-feedback"></span>
+								<input type="password" class="form-control checkValue" id="form_u_pwd"
+									name="u_pwd" placeholder="最长128个字符"></input>
+									<!-- <span class="fa fa-check form-control-feedback"></span> -->
 							</div>
 							<div class="col-sm-offset-2 col-sm-10">
-								<!-- <p class="help-block">Example block-level help text here.</p> -->
+								<p id="warn_u_pwd" class="help-block" style="color:red; display: none;">密码信息不能为空</p>
 							</div>
 						</div>
 						<div class="form-group has-feedback" style="margin-left: 170px;">
 							<div class="col-sm-2" style="text-align: right;">
 								<label for="inputEmail3" class="control-label">*再次输入密码：</div>
 							<div class="col-sm-10" style="width: 45%">
-								<input type="password" class="form-control" id="inputEmail3"
-									placeholder="最长128个字符"><span
-									class="fa fa-check form-control-feedback"></span>
+								<input type="password" class="form-control checkValue" id="form_u_pwd_check"
+									name="u_pwd" placeholder="最长128个字符"></input>
+									<!-- <span class="fa fa-check form-control-feedback"></span> -->
 							</div>
 							<div class="col-sm-offset-2 col-sm-10">
-								<!-- <p class="help-block">Example block-level help text here.</p> -->
+								<p id="warn_u_pwd_check" class="help-block" style="color:red; display: none;">两次密码输入不相同</p>
 							</div>
 						</div>
 						<div class="form-group" style="margin-left: 170px;">
@@ -101,7 +147,9 @@
 							</div>
 							<div class="col-sm-10">
 								<div class="checkbox">
-									<label><input type="checkbox">是<br></label>
+									<label>
+										<input id="form_u_issell" type="checkbox" value="0" name="u_issell" onclick="userIsSell();"></input>是<br></br>
+									</label>
 								</div>
 							</div>
 						</div>
@@ -110,11 +158,11 @@
 								<label for="inputEmail3" class="control-label">店铺名称：</label>
 							</div>
 							<div class="col-sm-10" style="width: 45%">
-								<input type="text" class="form-control" id="inputEmail3" placeholder="2-20个汉字">
-								<span class="fa fa-check form-control-feedback"></span>
+								<input name="u_store" type="text" class="form-control" id="form_u_store" placeholder="2-20个汉字" disabled="disabled"></input>
+								<!-- <span class="fa fa-check form-control-feedback"></span> -->
 							</div>
 							<div class="col-sm-offset-2 col-sm-10">
-								<!-- <p class="help-block">Example block-level help text here.</p> -->
+								<p id="warn_u_store" class="help-block" style="color:red; display: none;">店铺名称信息不能为空</p>
 							</div>
 						</div>
 						<div class="row">
@@ -122,7 +170,7 @@
 								<a class="btn btn-primary" href="itemsList.jsp">回到首页</a>
 							</div>
 							<div class="col-md-6">
-								<a class="btn btn-primary">完成注册</a>
+								<a class="btn btn-primary" onclick="submitForm();">完成注册</a>
 							</div>
 						</div>
 					</form>

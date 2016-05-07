@@ -28,7 +28,7 @@
 						class="icon-bar"></span><span class="icon-bar"></span><span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>电商秒杀平台</span></a>
+				<a class="navbar-brand" href="../item/listItem.do"><span>电商秒杀平台</span></a>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -52,7 +52,7 @@
 			<div class="row">
 				<div class="col-md-12 text-right">
 					<c:if test="${storeId == sessionScope.user.u_id}">
-						<a class="btn btn-sm btn-success">发布新商品<br></a>
+						<a class="btn btn-sm btn-success" href="../itemsRelease.jsp">发布新商品<br></a>
 					</c:if>
 				</div>
 			</div>
@@ -64,7 +64,9 @@
 			<div class="container">
 				<div class="row" style="border-bottom: 1px solid #eeeeee;">
 					<div class="col-md-2">
-						<img src="picture/exp1.jpeg" class="img-responsive">
+						<a href="../item/getItem.do?i_id=${item.i_id}">
+							<img src="../upload/${item.i_img1}" class="img-responsive"></img>
+						</a>
 					</div>
 					<div class="col-md-2">
 						<h5 contenteditable="false">${item.i_name}</h5>

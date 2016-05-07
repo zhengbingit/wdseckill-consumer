@@ -32,7 +32,7 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../userLogin.jsp">登录</a></li>
+					<li><a href="../user/login.do">登录</a></li>
 					<li><a href="../userRegister.jsp">注册会员</a></li>
 				</ul>
 			</div>

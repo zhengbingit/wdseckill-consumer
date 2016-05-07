@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	response.setHeader("Cache-Control", "no-store");
@@ -9,12 +10,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link rel="icon" type="image/x-icon" href="logo/wd.ico"
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
+<link rel="icon" type="image/x-icon" href="../logo/wd.ico"
 	media="screen" />
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<link href="css/font-awesome.min.css" rel="stylesheet"
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<link href="../css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
 <title>电商秒杀平台—商品发布</title>
 <script type="text/javascript">
@@ -48,15 +49,15 @@
 						class="icon-bar"></span><span class="icon-bar"></span><span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="item/listItem.do"><span>电商秒杀平台</span></a>
+				<a class="navbar-brand" href="../item/listItem.do"><span>电商秒杀平台</span></a>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="#">商品发布</a></li>
+					<li class="active"><a href="#">商品编辑</a></li>
 					<li><a
-						href="item/listStoreItem.do?u_id=${sessionScope.user.u_id}">我的店铺<br></a></li>
-					<li><a href="cart/listCart.do?u_id=${sessionScope.user.u_id}">购物车<br></a></li>
-					<li><a href="order/listOrder.do?u_id=${sessionScope.user.u_id}">我的订单<br></a></li>
+						href="../item/listStoreItem.do?u_id=${sessionScope.user.u_id}">我的店铺<br></a></li>
+					<li><a href="../cart/listCart.do?u_id=${sessionScope.user.u_id}">购物车<br></a></li>
+					<li><a href="../order/listOrder.do?u_id=${sessionScope.user.u_id}">我的订单<br></a></li>
 					<li><a href="#">欢迎${sessionScope.user.u_name}登录<br></a></li>
 				</ul>
 			</div>
@@ -67,7 +68,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="page-header text-left">
-						<h3>商品发布</h3>
+						<h3>商品编辑</h3>
 					</div>
 				</div>
 			</div>
@@ -77,9 +78,10 @@
 	<div class="section">
 		<div class="container">
 			<form class="form-horizontal text-left" id="itemForm"
-				action="item/addItem.do" method="post"
+				action="../item/updateItem.do" method="post"
 				enctype="multipart/form-data">
-				<input name="u_id" value="${sessionScope.user.u_id}" type="hidden"></input>
+				<input name="i_id" value="${item.i_id}" type="hidden"></input>
+				<input name="u_id" value="${item.u_id}" type="hidden"></input>
 				<div class="row">
 					<div class="col-md-12 text-right">
 						<div class="form-group has-feedback">
@@ -132,7 +134,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<h3 contenteditable="true">商品描述：</h3>
+						<h3 contenteditable="false">商品描述：</h3>
 						<div class="col-md-12">
 							<div class="form-group">
 								<div class="col-sm-10">
@@ -147,17 +149,17 @@
 						<h3>描述图片：</h3>
 						<div class="form-group">
 							<div class="col-sm-10">
-								<input type="file" name="files"></input>
+								<input type="file" name="files" value="${item.i_img1}"></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-10">
-								<input type="file" name="files"></input>
+								<input type="file" name="files" value="${item.i_img2}"></input>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-10">
-								<input type="file" name="files"></input>
+								<input type="file" name="files" value="${item.i_img3}"></input>
 							</div>
 						</div>
 						<hr>
@@ -182,7 +184,7 @@
 							<div class="col-sm-10" style="width: 50%;">
 								<input type="email" class="form-control" id="secKillTime"
 									disabled="disabled" name="i_killtime"
-									value="${item.i_killtime}" placeholder="YYYY-MM-DD HH:mm:ss"></input>
+									value="<fmt:formatDate value="${item.i_killtime}" pattern="yyyy-MM-dd HH:mm:ss"/>" placeholder="YYYY-MM-DD HH:mm:ss"></input>
 							</div>
 						</div>
 					</div>
@@ -190,10 +192,10 @@
 				<div class="row">
 					<div class="col-md-6 text-right">
 						<a class="btn btn-primary"
-							href="item/listStoreItem.do?u_id=${sessionScope.user.u_id}">回到店铺</a>
+							href="../item/listStoreItem.do?u_id=${sessionScope.user.u_id}">回到店铺</a>
 					</div>
 					<div class="col-md-6">
-						<a class="btn btn-primary" onclick="formCheck();">完成发布</a>
+						<a class="btn btn-primary" onclick="formCheck();">完成编辑</a>
 					</div>
 				</div>
 			</form>

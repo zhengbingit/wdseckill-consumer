@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wd.entity.User;
@@ -13,12 +14,10 @@ import com.wd.service.user.IUserService;
 @RequestMapping("/user")
 public class UserController {
 	public UserController() {
-		System.out.println("加载!");
 	}
 	@Autowired 
 	private IUserService userService;
 	public void setUserService(IUserService userService) {
-		System.out.println("装载userService");
 		this.userService = userService;
 	}
 	/**
@@ -26,9 +25,15 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/register")
-	public String addUserController(User user) {
-		userService.addUserService(user);
-		return "/user/login.do";
+	public String addUserController(User user, HttpSession session, ModelMap model) {
+		System.out.println("pwds:"+user.getU_pwd());
+		user.setU_money(100000);
+		if(userService.addUserService(user)) {
+			model.addAttribute("user", user);
+			return "/user/login.do";
+		}else {
+			return "/userRegister.jsp";
+		}
 	}
 	
 	/**
@@ -42,8 +47,7 @@ public class UserController {
 		User u = userService.loginService(user);
 		if(u!=null){
 			session.setAttribute("user", u);
-			System.out.println("Session 已加入");
-			return "/item/listItem.do";
+			return "redirect:/item/listItem.do";
 		}
 		// 如果登录失败，跳转至登录页面，重新登录
 		else {

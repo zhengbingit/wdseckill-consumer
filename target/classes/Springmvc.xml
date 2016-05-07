@@ -32,15 +32,26 @@
 	<context:component-scan base-package="com.wd.control" />
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/item/*" />
+			<mvc:mapping path="/**" />
 			<bean class="com.wd.interceptor.LoginInterceptor">
 				<property name="allowedPass">
 					<list>
 						<value>listItem.do</value>
 						<value>listItemNoLogin.do</value>
+						<value>register.do</value>
 					</list>
 				</property>
 			</bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
+	
+	<!-- 日期处理 -->
+	<!-- <mvc:annotation-driven conversion-service=""/>
+	<bean id="itemService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				
+			</list>
+		</property>
+	</bean> -->
 </beans>

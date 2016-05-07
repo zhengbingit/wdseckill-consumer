@@ -54,9 +54,9 @@
 			<div class="container">
 				<div class="row" style="border-bottom: 1px solid #eeeeee;">
 					<div class="col-md-2">
-						<img
-							src="../picture/exp1.jpeg"
-							class="img-responsive">
+						<a href="../item/getItem.do?i_id=${item.i_id}">
+							<img src="../upload/${item.i_img1}" class="img-responsive" ></img>
+						</a>
 					</div>
 					<div class="col-md-2">
 						<h5 contenteditable="false">${item.i_name}</h5>
@@ -77,7 +77,7 @@
 					<div class="col-md-3" style="text-align: right;">
 						<a class="text-primary" href="../item/listStoreItem.do?u_id=${item.user.u_id}">进入${item.user.u_store}店铺</a>
 						<c:if test="${item.i_iskill == 1}">
-							<h5 class=" text-right">离开始还剩 30:00</h5>
+							<h5 class=" text-right">离开始还剩 ${item.surplustime}</h5>
 						</c:if>
 						<h3 class="text-right"></h3>
 						<c:if test="${item.i_iskill == 1}">

@@ -57,7 +57,7 @@
 						class="icon-bar"></span><span class="icon-bar"></span><span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>电商秒杀平台</span></a>
+				<a class="navbar-brand" href="../item/listItem.do"><span>电商秒杀平台</span></a>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -105,14 +105,18 @@
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
 									<div class="checkbox">
-										<label><input type="checkbox" class="checkBoxs"></label>
+										<label>
+											<input type="checkbox" class="checkBoxs"></input>
+										</label>
 									</div>
 								</div>
 							</div>
 						</form>
 					</div>
 					<div class="col-md-3" style="width: 20%;">
-						<img src="picture/exp1.jpeg" class="img-responsive">
+						<a href="../item/getItem.do?i_id=${cart.item.i_id}">
+							<img src="../upload/${cart.item.i_img1}" class="img-responsive" ></img>
+						</a>
 					</div>
 					<div class="col-md-5">
 						<h5 contenteditable="false">${cart.item.i_name}</h5>

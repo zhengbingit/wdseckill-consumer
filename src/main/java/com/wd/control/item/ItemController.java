@@ -3,6 +3,7 @@ package com.wd.control.item;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.wd.entity.Cart;
 import com.wd.entity.Item;
 import com.wd.entity.User;
 import com.wd.service.items.IItemService;
@@ -39,10 +41,45 @@ public class ItemController {
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
-
+	
+	
+	/**
+	 * 购买商品跳转至收银台
+	 * 直接购买
+	 * 只存在一个商品
+	 * 1.计算总金额
+	 * @param item
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/tobuyItem")
+	public String buyItem(int[] i_id, int[] count, ModelMap model) {
+		//购买的商品减一
+		List<Cart> list_carts = new ArrayList<Cart>();
+		System.out.println(i_id.length+":length");
+		/*
+		 * 计算购买总额
+		 * 1.商品单价*商品数量+商品邮费
+		 */
+		double amount = 0;
+		for(int i = 0;i < i_id.length;i++){
+			System.out.println(i_id[i] + "--" + count[i]);
+			Cart cart = new Cart();
+			Item item = itemService.getItemService(i_id[i]);
+			cart.setC_count(count[i]);
+			cart.setItem(item);
+			list_carts.add(cart);
+			amount += item.getI_price() * count[i] + item.getI_postage();
+		}
+		model.addAttribute("amount", amount);
+		model.addAttribute("list_carts", list_carts);
+		model.addAttribute("formPath", "../pay/confirm_order.do");
+		return "/userPay.jsp";
+	}
+	
+	
 	/**
 	 * 发布商品
-	 * 
 	 * @param item
 	 * @return
 	 * @throws IOException

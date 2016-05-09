@@ -29,5 +29,6 @@
 	<dubbo:reference id="itemService" interface="com.wd.service.items.IItemService" check="false"/>
 	<dubbo:reference id="orderService" interface="com.wd.service.order.IOrderService" check="false"/>
 	<dubbo:reference id="cartService" interface="com.wd.service.cart.ICartService" check="false"/>
+	<dubbo:reference id="payService" interface="com.wd.service.pay.IPayService" check="false"/>
 	<!-- 和本地服务一样使用远程服务 -->
 </beans>

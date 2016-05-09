@@ -101,7 +101,7 @@
 							<button type="button" class="btn btn-default" style="color: #AF3030;" onclick="location.reload()">刷新</button>
 						</c:if>
 						<c:if test="${item.i_stock != 0 && item.i_iskill != 1}">
-							<button type="button" class="btn btn-default" onclick="">加入购物车</button>
+							<a href="../cart/addCart.do?u_id=${sessionScope.user.u_id}&i_id=${item.i_id}&c_count=1"><button type="button" class="btn btn-default">加入购物车</button></a>
 						</c:if>
 						<c:if test="${item.i_stock == 0 && item.i_iskill != 1}">
 							<button type="button" class="btn btn-default" disabled="disabled">加入购物车</button>

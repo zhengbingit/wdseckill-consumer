@@ -10,10 +10,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
-<link rel="icon" type="image/x-icon" href="../logo/wd.ico" media="screen" />
+<link rel="icon" type="image/x-icon" href="../logo/wd.ico"
+	media="screen" />
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="../css/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
 <title>电商秒杀平台—购物车</title>
 <script type="text/javascript">
 	function checkAll() {
@@ -45,6 +47,9 @@
 			}
 		});
 	});
+	function submitFrom() {
+		$("#buyCartForm").submit();
+	}
 </script>
 </head>
 <body>
@@ -62,8 +67,9 @@
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="#">购物车</a></li>
-					<li><a
-						href="../item/listStoreItem.do?u_id=${sessionScope.user.u_id}">我的店铺<br></a></li>
+					<c:if test="${sessionScope.user.u_issell == 1}">
+						<li><a href="../item/listStoreItem.do?u_id=${sessionScope.user.u_id}">我的店铺</a></li>
+					</c:if>
 					<li><a
 						href="../order/listOrder.do?u_id=${sessionScope.user.u_id}">我的订单<br></a></li>
 					<li><a href="#">欢迎${sessionScope.user.u_name}登录<br></a></li>
@@ -96,44 +102,46 @@
 			</div>
 		</div>
 	</div>
-	<c:forEach items="${list_carts}" var="cart">
-		<div style="padding: 10px 0;">
-			<div class="container">
-				<div class="row" style="border-bottom: 1px solid #eeeeee;">
-					<div class="col-md-1" style="width: 1.3%;">
-						<form class="form-horizontal" role="form">
+	<form action="../cart/tobuyCart.do" method="post" id="buyCartForm">
+		<c:forEach items="${list_carts}" var="cart">
+			<div style="padding: 10px 0;">
+				<div class="container">
+					<div class="row" style="border-bottom: 1px solid #eeeeee;">
+						<div class="col-md-1" style="width: 1.3%;">
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
 									<div class="checkbox">
-										<label>
-											<input type="checkbox" class="checkBoxs"></input>
+										<label> <input type="checkbox" class="checkBoxs"
+											value="${cart.c_id}" name="c_id" />
 										</label>
 									</div>
 								</div>
 							</div>
-						</form>
-					</div>
-					<div class="col-md-3" style="width: 20%;">
-						<a href="../item/getItem.do?i_id=${cart.item.i_id}">
-							<img src="../upload/${cart.item.i_img1}" class="img-responsive" ></img>
-						</a>
-					</div>
-					<div class="col-md-5">
-						<h5 contenteditable="false">${cart.item.i_name}</h5>
-						<h5>价格：${cart.item.i_price}</h5>
-						<h5>邮费：${cart.item.i_postage}</h5>
-						<h5>购买件数：${cart.c_count}件</h5>
-					</div>
-					<div class="col-md-3 text-right" style="width: 35%;">
-						<a class="text-primary text-right" href="../item/listStoreItem.do?u_id=${cart.item.user.u_id}">进入${cart.item.user.u_store}店铺</a>
-						<h3 class="text-right"></h3>
-						<h5 class="text-right">销量：${cart.item.i_sales}件</h5>
-						<a class="btn btn-info btn-sm">购买</a>
+						</div>
+						<div class="col-md-3" style="width: 18%;margin-left: 2%;">
+							<a href="../item/getItem.do?i_id=${cart.item.i_id}"> <img
+								src="../upload/${cart.item.i_img1}" class="img-responsive">
+							</a>
+						</div>
+						<div class="col-md-5">
+							<h5 contenteditable="false">${cart.item.i_name}</h5>
+							<h5>价格：${cart.item.i_price}</h5>
+							<h5>邮费：${cart.item.i_postage}</h5>
+							<h5>购买件数：${cart.c_count}件</h5>
+						</div>
+						<div class="col-md-3 text-right" style="width: 35%;">
+							<a class="text-primary text-right"
+								href="../item/listStoreItem.do?u_id=${cart.item.user.u_id}">进入${cart.item.user.u_store}店铺</a>
+							<h3 class="text-right"></h3>
+							<h5 class="text-right">销量：${cart.item.i_sales}件</h5>
+							<a class="btn btn-info btn-sm"
+								href="../cart/tobuyCart.do?c_id=${cart.c_id}&count=1">购买</a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</c:forEach>
+		</c:forEach>
+	</form>
 	<div style="padding: 10px 0;">
 		<div class="container">
 			<div class="row" style="border-bottom: 1px solid #eeeeee;">
@@ -202,7 +210,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<a class="btn btn-primary">一起购买</a>
+					<a class="btn btn-primary" onclick="submitFrom();">一起购买</a>
 				</div>
 			</div>
 			<div class="row">

@@ -7,14 +7,14 @@
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/x-icon" href="../logo/wd.ico" media="screen" />
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<title>电商秒杀平台—商品详情</title>
-<link href="../css/itemDetails.css" rel="stylesheet" type="text/css">
+	<meta charset="utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<link rel="icon" type="image/x-icon" href="../logo/wd.ico" media="screen"></link>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css"></link>
+	<title>电商秒杀平台—商品详情</title>
+	<link href="../css/itemDetails.css" rel="stylesheet" type="text/css"></link>
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top">
@@ -31,8 +31,10 @@
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="#">商品详情</a></li>
-					<li><a href="../item/listStoreItem.do?u_id=${sessionScope.user.u_id}">我的店铺<br></a></li>
-					<li><a href="../cart/listCart.do?u_id=${sessionScope.user.u_id}">购物车<br></a></li>
+					<c:if test="${sessionScope.user.u_issell == 1}">
+						<li><a href="../item/listStoreItem.do?u_id=${sessionScope.user.u_id}">我的店铺</a></li>
+					</c:if>
+					<li><a href="../cart/listCart.do?u_id=${sessionScope.user.u_id}">购物车<br/></a></li>
 					<li><a href="../order/listOrder.do?u_id=${sessionScope.user.u_id}">我的订单<br></a></li>
 					<li><a href="#">欢迎${sessionScope.user.u_name}登录<br></a></li>
 				</ul>
@@ -50,7 +52,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<hr>
+						<hr></hr>
 					</div>
 				</div>
 			</div>
@@ -72,13 +74,13 @@
 					<c:if test="${item.i_stock == 0}">
 						<h3 class="text-danger">无货</h3>
 					</c:if>
-					<hr>
+					<hr></hr>
 					<c:if test="${item.i_iskill == 1 && item.i_stock != 0}">
 						<h3 class="text-right">离开始还剩 ${surplusTime}</h3>
 					</c:if>
-					<a class="btn btn-default">加入购物车</a>
+					<a href="../cart/addCart.do?u_id=${sessionScope.user.u_id}&i_id=${item.i_id}&c_count=1" class="btn btn-default">加入购物车</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a class="btn btn-default">购买</a>
+					<a class="btn btn-default" href="../item/tobuyItem.do?i_id=${item.i_id}&count=1">购买</a>
 					<div class="btn-group"></div>
 				</div>
 				<div class="col-md-1">
@@ -93,7 +95,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<hr>
+					<hr></hr>
 				</div>
 			</div>
 			<div class="row">
@@ -129,7 +131,7 @@
 				<div class="col-sm-6">
 					<h1>电商秒杀平台</h1>
 					<p>
-						郑斌&nbsp;&nbsp;王倩倩&nbsp;&nbsp;张静娜&nbsp;&nbsp;王泰隆<br> <br>
+						郑斌&nbsp;&nbsp;王倩倩&nbsp;&nbsp;张静娜&nbsp;&nbsp;王泰隆<br></br> <br></br>
 					</p>
 				</div>
 				<!-- <div class="col-sm-6">

@@ -54,8 +54,9 @@
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="#">商品编辑</a></li>
-					<li><a
-						href="../item/listStoreItem.do?u_id=${sessionScope.user.u_id}">我的店铺<br></a></li>
+					<c:if test="${sessionScope.user.u_issell == 1}">
+						<li><a href="../item/listStoreItem.do?u_id=${sessionScope.user.u_id}">我的店铺</a></li>
+					</c:if>
 					<li><a href="../cart/listCart.do?u_id=${sessionScope.user.u_id}">购物车<br></a></li>
 					<li><a href="../order/listOrder.do?u_id=${sessionScope.user.u_id}">我的订单<br></a></li>
 					<li><a href="#">欢迎${sessionScope.user.u_name}登录<br></a></li>

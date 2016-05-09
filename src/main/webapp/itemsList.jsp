@@ -7,14 +7,14 @@
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 	<script type="text/javascript" src="../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href="../css/userItemsList.css" rel="stylesheet" type="text/css">
+	<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css"></link>
+	<link href="../css/userItemsList.css" rel="stylesheet" type="text/css"></link>
 	<title>电商秒杀平台—商品列表</title>
-	<link rel="icon" type="image/x-icon" href="../logo/wd.ico" media="screen" />
+	<link rel="icon" type="image/x-icon" href="../logo/wd.ico" media="screen"></link>
 </head>
 <body>
 	<div class="navbar navbar-default navbar-fixed-top">
@@ -30,7 +30,9 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-ex-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../item/listStoreItem.do?u_id=${sessionScope.user.u_id}">我的店铺</a></li>
+					<c:if test="${sessionScope.user.u_issell == 1}">
+						<li><a href="../item/listStoreItem.do?u_id=${sessionScope.user.u_id}">我的店铺</a></li>
+					</c:if>
 					<li><a href="../cart/listCart.do?u_id=${sessionScope.user.u_id}">购物车</a></li>
 					<li><a href="../order/listOrder.do?u_id=${sessionScope.user.u_id}">我的订单</a></li>
 					<li><a href="#">欢迎${sessionScope.user.u_name}登录，余额${sessionScope.user.u_money}</a></li>
@@ -84,7 +86,7 @@
 							<button type="button" class="btn btn-default" style="color: #AF3030;" onclick="location.reload()">刷新</button>
 						</c:if>
 						<c:if test="${item.i_stock != 0 && item.i_iskill != 1}">
-							<button type="button" class="btn btn-default" onclick="">加入购物车</button>
+							<a href="../cart/addCart.do?u_id=${sessionScope.user.u_id}&i_id=${item.i_id}&c_count=1"><button type="button" class="btn btn-default">加入购物车</button></a>
 						</c:if>
 						<c:if test="${item.i_stock == 0 && item.i_iskill != 1}">
 							<button type="button" class="btn btn-default" disabled="disabled">加入购物车</button>

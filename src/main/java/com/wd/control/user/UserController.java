@@ -25,12 +25,14 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/register")
-	public String addUserController(User user, HttpSession session, ModelMap model) {
-		System.out.println("pwds:"+user.getU_pwd());
+	public String addUserController(User user, HttpSession session) {
+		String[] password = user.getU_pwd().split(",");
 		user.setU_money(100000);
-		if(userService.addUserService(user)) {
-			model.addAttribute("user", user);
-			return "/user/login.do";
+		user.setU_pwd(password[0]);
+		System.out.println("完成User" + user);
+		if(userService.addUserService(user) && password[0].equals(password[1])) {
+			session.setAttribute("user", user);
+			return "redirect:/item/listItem.do";
 		}else {
 			return "/userRegister.jsp";
 		}
@@ -44,6 +46,7 @@ public class UserController {
 	@RequestMapping("/login")
 	public String loginUserController(User user, HttpSession session) {
 		// 如果登录成功，将用户加入session，并跳转到 所有商品列表页面
+		System.out.println("登录："+user);
 		User u = userService.loginService(user);
 		if(u!=null){
 			session.setAttribute("user", u);

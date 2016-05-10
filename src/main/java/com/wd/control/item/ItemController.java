@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.wd.entity.Cart;
 import com.wd.entity.Item;
+import com.wd.entity.Pages;
 import com.wd.entity.User;
 import com.wd.service.items.IItemService;
 
@@ -28,6 +29,10 @@ import com.wd.service.items.IItemService;
 @Controller
 @RequestMapping("/item")
 public class ItemController {
+	//页面列表每页页展现40个主题,大于40个分页展现。默认按照时间倒排
+	private static final int PAGESIZE = 3;
+	//默认显示第一页
+	private static int PAGENUM = 1;
 	@Autowired
 	private IItemService itemService;
 
@@ -224,8 +229,12 @@ public class ItemController {
 	 * @return
 	 */
 	@RequestMapping("/listItem")
-	public String listItem(ModelMap model) {
-		List<Item> list_items = itemService.listItemsService();
+	public String listItem(ModelMap model, HttpServletRequest request) {
+		if(request.getParameter("pageNum") != null) {
+			PAGENUM = Integer.parseInt(request.getParameter("pageNum"));
+		}
+		Pages pages = itemService.listItemsService(PAGENUM, PAGESIZE);
+		List<Item> list_items = (List<Item>)pages.getList(); 
 		for(Item item : list_items) {
 			Date date2 = item.getI_killtime();
 			if (date2 != null) {
@@ -233,6 +242,8 @@ public class ItemController {
 			}
 		}
 		model.addAttribute("list_items", list_items);
+		model.addAttribute("pages", pages.getPages());
+		model.addAttribute("pagenow", PAGENUM);
 		return "/itemsList.jsp";
 	}
 

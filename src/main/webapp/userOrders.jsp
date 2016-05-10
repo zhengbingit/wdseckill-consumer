@@ -17,9 +17,38 @@
 <link href="../css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
 <title>电商秒杀平台—我的订单</title>
+<script type="text/javascript">
+	$(function() {
+		var pages = $("#pagesV").val();
+		var pageN = $("#pageN").val();
+		if(pageN - 1 > 0) {
+			/* cart/listCart.do?pageNum=* */
+			$("<li><a href='../order/listOrder.do?pageNum="+(pageN-1)+"'>Prev</a></li>").appendTo($("#dynamic"));
+		}else {
+			$("<li><a href='#'>Prev</a></li>").appendTo($("#dynamic"));
+		}
+		for (i = 1;i <= pages;i++) {
+			if(i != pageN) {
+				var li = "<li><a href='../order/listOrder.do?pageNum="+i+"'>"+i+"</a></li>";
+			}else {
+				var li = "<li class=active><a href='../order/listOrder.do?pageNum="+i+"'>"+i+"</a></li>";
+			}
+			$(li).appendTo($("#dynamic"));
+		}
+		if(pages > pageN + 1) {
+			$("<li><a href='../order/listOrder.do?pageNum="+(pageN*1+1)+"'>Next</a></li>").appendTo($("#dynamic"));
+		}else {
+			$("<li><a href='#'>Next</a></li>").appendTo($("#dynamic"));
+		}
+	});
+</script>
 </head>
 <body>
-	<div class="navbar navbar-default ">
+	<!-- 总页数 -->
+	<input type="hidden" value="${pages}" id="pagesV"></input>
+	<!-- 当前页数 -->
+	<input type="hidden" value="${pagenow}" id="pageN"></input>
+	<div class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -43,11 +72,11 @@
 			</div>
 		</div>
 	</div>
-	<div class="section">
+	<div class="section" style="padding: 12px 0">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="page-header text-left">
+					<div class="page-header text-left" style="margin: 50px 0 20px;">
 						<h3>我的订单</h3>
 					</div>
 				</div>
@@ -138,14 +167,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<ul class="pagination">
-						<li class=""><a href="#">Prev</a></li>
+					<ul class="pagination" id="dynamic">
+						<!-- <li class=""><a href="#">Prev</a></li>
 						<li class="active"><a href="#">1</a></li>
 						<li class=""><a href="#">2</a></li>
 						<li class=""><a href="#">3</a></li>
 						<li class=""><a href="#">4</a></li>
 						<li><a href="#">5</a></li>
-						<li><a href="#">Next</a></li>
+						<li><a href="#">Next</a></li> -->
 					</ul>
 				</div>
 			</div>

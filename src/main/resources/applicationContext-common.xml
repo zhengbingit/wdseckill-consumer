@@ -31,4 +31,5 @@
 	<dubbo:reference id="cartService" interface="com.wd.service.cart.ICartService" check="false"/>
 	<dubbo:reference id="payService" interface="com.wd.service.pay.IPayService" check="false"/>
 	<!-- 和本地服务一样使用远程服务 -->
+	
 </beans>

@@ -30,22 +30,43 @@
 		}
 	}
 	$(function() {
-		$(".checkBoxs").change(function() {
-			if (!$(this).prop("checked")) {
-				$("#checkAllButton").prop("checked", false);
+		var pages = $("#pagesV").val();
+		var pageN = $("#pageN").val();
+		if(pageN - 1 > 0) {
+			/* cart/listCart.do?u_id="+user+"&pageNum=* */
+			$("<li><a href='../cart/listCart.do?pageNum="+(pageN-1)+"'>Prev</a></li>").appendTo($("#dynamic"));
+		}else {
+			$("<li><a href='#'>Prev</a></li>").appendTo($("#dynamic"));
+		}
+		for (i = 1;i <= pages;i++) {
+			if(i != pageN) {
+				var li = "<li><a href='../cart/listCart.do?pageNum="+i+"'>"+i+"</a></li>";
+			}else {
+				var li = "<li class=active><a href='../cart/listCart.do?pageNum="+i+"'>"+i+"</a></li>";
 			}
-			var a = 0;
-			var b = 0;
-			$(".checkBoxs").each(function() {
-				a++;
-				if ($(this).prop("checked")) {
-					b++;
-				}
-			});
-			if (a == b) {
-				$("#checkAllButton").prop("checked", true);
+			$(li).appendTo($("#dynamic"));
+		}
+		if(pages > pageN + 1) {
+			$("<li><a href='../cart/listCart.do?pageNum="+(pageN*1+1)+"'>Next</a></li>").appendTo($("#dynamic"));
+		}else {
+			$("<li><a href='#'>Next</a></li>").appendTo($("#dynamic"));
+		}
+	});
+	$(".checkBoxs").change(function() {
+		if (!$(this).prop("checked")) {
+			$("#checkAllButton").prop("checked", false);
+		}
+		var a = 0;
+		var b = 0;
+		$(".checkBoxs").each(function() {
+			a++;
+			if ($(this).prop("checked")) {
+				b++;
 			}
 		});
+		if (a == b) {
+			$("#checkAllButton").prop("checked", true);
+		}
 	});
 	function submitFrom() {
 		$("#buyCartForm").submit();
@@ -53,6 +74,10 @@
 </script>
 </head>
 <body>
+	<!-- 总页数 -->
+	<input type="hidden" value="${pages}" id="pagesV"></input>
+	<!-- 当前页数 -->
+	<input type="hidden" value="${pagenow}" id="pageN"></input>
 	<div class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -215,14 +240,14 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<ul class="pagination">
-						<li class=""><a href="#">Prev</a></li>
+					<ul class="pagination" id="dynamic">
+						<!-- <li class=""><a href="#">Prev</a></li>
 						<li class="active"><a href="#">1</a></li>
 						<li class=""><a href="#">2</a></li>
 						<li class=""><a href="#">3</a></li>
 						<li class=""><a href="#">4</a></li>
 						<li><a href="#">5</a></li>
-						<li><a href="#">Next</a></li>
+						<li><a href="#">Next</a></li> -->
 					</ul>
 				</div>
 			</div>

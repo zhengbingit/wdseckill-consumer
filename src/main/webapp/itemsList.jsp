@@ -15,8 +15,37 @@
 	<link href="../css/userItemsList.css" rel="stylesheet" type="text/css"></link>
 	<title>电商秒杀平台—商品列表</title>
 	<link rel="icon" type="image/x-icon" href="../logo/wd.ico" media="screen"></link>
+	<script type="text/javascript">
+		$(function (){
+			var pages = $("#pagesV").val();
+			var pageN = $("#pageN").val();
+			if(pageN - 1 > 0) {
+				$("<li><a href='../item/listItem.do?pageNum="+(pageN-1)+"'>Prev</a></li>").appendTo($("#dynamic"));
+			}else {
+				$("<li><a href='#'>Prev</a></li>").appendTo($("#dynamic"));
+			}
+			for (i = 1;i <= pages;i++) {
+				if(i != pageN) {
+					var li = "<li><a href='../item/listItem.do?pageNum="+i+"'>"+i+"</a></li>";
+				}else {
+					var li = "<li class=active><a href='../item/listItem.do?pageNum="+i+"'>"+i+"</a></li>";
+				}
+				
+				$(li).appendTo($("#dynamic"));
+			}
+			if(pages > pageN + 1) {
+				$("<li><a href='../item/listItem.do?pageNum="+(pageN*1+1)+"'>Next</a></li>").appendTo($("#dynamic"));
+			}else {
+				$("<li><a href='#'>Next</a></li>").appendTo($("#dynamic"));
+			}
+		});
+	</script>
 </head>
 <body>
+	<!-- 总页数 -->
+	<input type="hidden" value="${pages}" id="pagesV"></input>
+	<!-- 当前页数 -->
+	<input type="hidden" value="${pagenow}" id="pageN"></input>
 	<div class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -100,14 +129,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<ul class="pagination">
-						<li class=""><a href="#">Prev</a></li>
+					<ul class="pagination" id="dynamic">
+						<!-- <li class=""><a href="#">Prev</a></li>
 						<li class="active"><a href="#">1</a></li>
 						<li class=""><a href="#">2</a></li>
 						<li class=""><a href="#">3</a></li>
 						<li class=""><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">Next</a></li>
+						<li><a href="#">5</a></li> -->
+						<!-- <li><a href="#">Next</a></li> -->
 					</ul>
 				</div>
 			</div>

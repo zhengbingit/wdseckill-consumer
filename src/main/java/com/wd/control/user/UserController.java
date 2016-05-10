@@ -4,7 +4,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wd.entity.User;
@@ -13,8 +12,6 @@ import com.wd.service.user.IUserService;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	public UserController() {
-	}
 	@Autowired 
 	private IUserService userService;
 	public void setUserService(IUserService userService) {

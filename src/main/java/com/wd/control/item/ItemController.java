@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -29,9 +30,9 @@ import com.wd.service.items.IItemService;
 @Controller
 @RequestMapping("/item")
 public class ItemController {
-	//页面列表每页页展现40个主题,大于40个分页展现。默认按照时间倒排
+	// 页面列表每页页展现40个主题,大于40个分页展现。默认按照时间倒排
 	private static final int PAGESIZE = 3;
-	//默认显示第一页
+	// 默认显示第一页
 	private static int PAGENUM = 1;
 	@Autowired
 	private IItemService itemService;
@@ -46,28 +47,24 @@ public class ItemController {
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
-	
-	
+
 	/**
-	 * 购买商品跳转至收银台
-	 * 直接购买
-	 * 只存在一个商品
-	 * 1.计算总金额
+	 * 购买商品跳转至收银台 直接购买 只存在一个商品 1.计算总金额
+	 * 
 	 * @param item
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/tobuyItem")
 	public String buyItem(int[] i_id, int[] count, ModelMap model) {
-		//购买的商品减一
+		// 购买的商品减一
 		List<Cart> list_carts = new ArrayList<Cart>();
-		System.out.println(i_id.length+":length");
+		System.out.println(i_id.length + ":length");
 		/*
-		 * 计算购买总额
-		 * 1.商品单价*商品数量+商品邮费
+		 * 计算购买总额 1.商品单价*商品数量+商品邮费
 		 */
 		double amount = 0;
-		for(int i = 0;i < i_id.length;i++){
+		for (int i = 0; i < i_id.length; i++) {
 			System.out.println(i_id[i] + "--" + count[i]);
 			Cart cart = new Cart();
 			Item item = itemService.getItemService(i_id[i]);
@@ -81,10 +78,10 @@ public class ItemController {
 		model.addAttribute("formPath", "../pay/confirm_order.do");
 		return "/userPay.jsp";
 	}
-	
-	
+
 	/**
 	 * 发布商品
+	 * 
 	 * @param item
 	 * @return
 	 * @throws IOException
@@ -97,7 +94,7 @@ public class ItemController {
 		// 文件类型
 		if (files != null && files.length > 0) {
 			for (int i = 0; i < files.length && !files[i].isEmpty(); i++) {
-				System.out.println("----"+files[i].isEmpty());
+				System.out.println("----" + files[i].isEmpty());
 				String type = files[i].getOriginalFilename();
 				type = type.substring(type.lastIndexOf(".") + 1);
 				// 文件名
@@ -114,7 +111,7 @@ public class ItemController {
 				i_imgs[i] = pic.toString();
 			}
 		}
-		
+
 		item.setI_img1(i_imgs[0]);
 		item.setI_img2(i_imgs[1]);
 		item.setI_img3(i_imgs[2]);
@@ -143,7 +140,7 @@ public class ItemController {
 		// 文件类型
 		if (files != null && files.length > 0) {
 			for (int i = 0; i < files.length; i++) {
-				if(!files[i].isEmpty()) {
+				if (!files[i].isEmpty()) {
 					String type = files[i].getOriginalFilename();
 					type = type.substring(type.lastIndexOf(".") + 1);
 					// 文件名
@@ -164,9 +161,9 @@ public class ItemController {
 		item.setI_img2(i_imgs[1]);
 		item.setI_img3(i_imgs[2]);
 		item.setI_time(new Date());
-		
+
 		// 更新数据库
-		System.out.println("更新商品："+itemService.editItemService(item));
+		System.out.println("更新商品：" + itemService.editItemService(item));
 		User user = (User) request.getSession().getAttribute("user");
 		int u_id = user.getU_id();
 		return "redirect:/item/listStoreItem.do?u_id=" + u_id;
@@ -182,7 +179,7 @@ public class ItemController {
 	public String deleteItem(HttpServletRequest request) {
 		int u_id = Integer.parseInt(request.getParameter("u_id"));
 		int i_id = Integer.parseInt(request.getParameter("i_id"));
-		System.out.println("删除商品："+itemService.deleteItemService(i_id));
+		System.out.println("删除商品：" + itemService.deleteItemService(i_id));
 		return "redirect:/item/listStoreItem.do?u_id=" + u_id;
 	}
 
@@ -230,12 +227,13 @@ public class ItemController {
 	 */
 	@RequestMapping("/listItem")
 	public String listItem(ModelMap model, HttpServletRequest request) {
-		if(request.getParameter("pageNum") != null) {
+		if (request.getParameter("pageNum") != null) {
 			PAGENUM = Integer.parseInt(request.getParameter("pageNum"));
 		}
 		Pages pages = itemService.listItemsService(PAGENUM, PAGESIZE);
-		List<Item> list_items = (List<Item>)pages.getList(); 
-		for(Item item : list_items) {
+		@SuppressWarnings("unchecked")
+		List<Item> list_items = (List<Item>) pages.getList();
+		for (Item item : list_items) {
 			Date date2 = item.getI_killtime();
 			if (date2 != null) {
 				item.setSurplustime(surplusTime(date2));
@@ -256,7 +254,7 @@ public class ItemController {
 	@RequestMapping("/listItemNoLogin")
 	public String listItemNoLogin(ModelMap model) {
 		List<Item> list_items = itemService.listItemsNoLoginService();
-		for(Item item : list_items) {
+		for (Item item : list_items) {
 			Date date2 = item.getI_killtime();
 			if (date2 != null) {
 				item.setSurplustime(surplusTime(date2));
@@ -273,9 +271,14 @@ public class ItemController {
 	 * @return
 	 */
 	@RequestMapping("/listStoreItem")
-	public String listStoreItem(HttpServletRequest request, ModelMap model) {
+	public String listStoreItem(HttpServletRequest request, ModelMap model, HttpSession session) {
+		if (request.getParameter("pageNum") != null) {
+			PAGENUM = Integer.parseInt(request.getParameter("pageNum"));
+		}
 		int u_id = Integer.parseInt(request.getParameter("u_id"));
-		List<Item> list_items = itemService.listStoreItemsService(u_id);
+		Pages pages = itemService.listStoreItemsService(PAGENUM, PAGESIZE, u_id);
+		@SuppressWarnings("unchecked")
+		List<Item> list_items = (ArrayList<Item>) pages.getList();
 		for (Item item : list_items) {
 			Date date2 = item.getI_killtime();
 			if (date2 != null) {
@@ -286,7 +289,9 @@ public class ItemController {
 		if (list_items.size() != 0) {
 			// 获得当前查看店铺的店铺名与店铺Id
 			model.addAttribute("storeName", list_items.get(0).getUser().getU_store());
-			model.addAttribute("storeId", list_items.get(0).getUser().getU_id());
+			model.addAttribute("storeId", u_id);
+			model.addAttribute("pages", pages.getPages());
+			model.addAttribute("pagenow", PAGENUM);
 		}
 		return "/userItemsList.jsp";
 	}
@@ -298,14 +303,28 @@ public class ItemController {
 	 * @return
 	 */
 	private String surplusTime(Date date2) {
-		System.out.println(date2);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 		Date date = new Date();
 		long temp = date2.getTime() - date.getTime(); // 相差毫秒数
-		long hours = temp / 1000 / 3600; // 相差小时数
-		long temp2 = temp % (1000 * 3600);
-		long mins = temp2 / 1000 / 60; // 相差分钟数
-		String surplustime = hours + ":" + mins;
-		return surplustime;
+
+		System.out.println("当前时间：" + sdf.format(date));
+		System.out.println("秒杀开始时间：" + sdf.format(date2));
+		if (temp <= 0) {
+			return "00:00";
+		} else {
+			long day = 0;
+			long hour = 0;
+			long min = 0;
+			long sec = 0;
+			long diff = temp;
+			day = diff / (24 * 60 * 60 * 1000);
+			hour = (diff / (60 * 60 * 1000) - day * 24);
+			min = ((diff / (60 * 1000)) - day * 24 * 60 - hour * 60);
+			sec = (diff / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
+			String surplustime = min + ":" + sec;
+			return surplustime;
+		}
 	}
 
 }

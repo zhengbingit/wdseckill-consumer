@@ -17,8 +17,40 @@
 	type="text/css">
 <title>电商秒杀平台—店铺商品列表</title>
 <link href="../css/userItemsList.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+	$(function (){
+		var pages = $("#pagesV").val();
+		var pageN = $("#pageN").val();
+		var pageI = $("#pageI").val();
+		if(pageN - 1 > 0) {
+			$("<li><a href='../item/listStoreItem.do?u_id="+pageI+"&pageNum="+(pageN-1)+"'>Prev</a></li>").appendTo($("#dynamic"));
+		}else {
+			$("<li><a href='#'>Prev</a></li>").appendTo($("#dynamic"));
+		}
+		for (i = 1;i <= pages;i++) {
+			if(i != pageN) {
+				var li = "<li><a href='../item/listStoreItem.do?u_id="+pageI+"&pageNum="+i+"'>"+i+"</a></li>";
+			}else {
+				var li = "<li class=active><a href='../item/listStoreItem.do?u_id="+pageI+"&pageNum="+i+"'>"+i+"</a></li>";
+			}
+			
+			$(li).appendTo($("#dynamic"));
+		}
+		if(pages > pageN + 1) {
+			$("<li><a href='../item/listStoreItem.do?u_id="+pageI+"&pageNum="+(pageN*1+1)+"'>Next</a></li>").appendTo($("#dynamic"));
+		}else {
+			$("<li><a href='#'>Next</a></li>").appendTo($("#dynamic"));
+		}
+	});
+</script>
 </head>
 <body>
+	<!-- 总页数 -->
+	<input type="hidden" value="${pages}" id="pagesV"></input>
+	<!-- 当前页数 -->
+	<input type="hidden" value="${pagenow}" id="pageN"></input>
+	<!-- 商铺id -->
+	<input type="hidden" value="${storeId}" id="pageI"></input>
 	<div class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -97,13 +129,13 @@
 							<h5 class="text-right">离开始还剩 ${item.surplustime}</h5>
 						</c:if>
 						<h3 class="text-right"></h3>
-						<c:if test="${item.i_iskill == 1}">
+						<c:if test="${item.i_iskill == 1 && storeId != sessionScope.user.u_id}">
 							<button type="button" class="btn btn-default" style="color: #AF3030;" onclick="location.reload()">刷新</button>
 						</c:if>
-						<c:if test="${item.i_stock != 0 && item.i_iskill != 1}">
+						<c:if test="${item.i_stock != 0 && item.i_iskill != 1 && storeId != sessionScope.user.u_id}">
 							<a href="../cart/addCart.do?u_id=${sessionScope.user.u_id}&i_id=${item.i_id}&c_count=1"><button type="button" class="btn btn-default">加入购物车</button></a>
 						</c:if>
-						<c:if test="${item.i_stock == 0 && item.i_iskill != 1}">
+						<c:if test="${item.i_stock == 0 && item.i_iskill != 1 && storeId != sessionScope.user.u_id}">
 							<button type="button" class="btn btn-default" disabled="disabled">加入购物车</button>
 						</c:if>
 						<h5 class="text-right">销量：${item.i_sales}件</h5>
@@ -117,14 +149,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-right">
-					<ul class="pagination">
-						<li class=""><a href="#">Prev</a></li>
+					<ul class="pagination" id="dynamic">
+						<!-- <li class=""><a href="#">Prev</a></li>
 						<li class="active"><a href="#">1</a></li>
 						<li class=""><a href="#">2</a></li>
 						<li class=""><a href="#">3</a></li>
 						<li class=""><a href="#">4</a></li>
 						<li><a href="#">5</a></li>
-						<li><a href="#">Next</a></li>
+						<li><a href="#">Next</a></li> -->
 					</ul>
 				</div>
 			</div>

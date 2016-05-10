@@ -75,12 +75,17 @@
 						<h3 class="text-danger">无货</h3>
 					</c:if>
 					<hr></hr>
-					<c:if test="${item.i_iskill == 1 && item.i_stock != 0}">
+					<c:if test="${item.i_iskill == 1 && item.i_stock != 0 && surplusTime != '00:00'}">
 						<h3 class="text-right">离开始还剩 ${surplusTime}</h3>
 					</c:if>
 					<a href="../cart/addCart.do?u_id=${sessionScope.user.u_id}&i_id=${item.i_id}&c_count=1" class="btn btn-default">加入购物车</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a class="btn btn-default" href="../item/tobuyItem.do?i_id=${item.i_id}&count=1">购买</a>
+					<c:if test="${item.i_iskill == 1 && item.i_stock != 0 && surplusTime != '00:00'}">
+						<button type="button" class="btn btn-default" disabled="disabled">购买</button>
+					</c:if>
+					<c:if test="${item.i_iskill == 1 && item.i_stock != 0 && surplusTime == '00:00'}">
+						<a class="btn btn-default" href="../item/tobuyItem.do?i_id=${item.i_id}&count=1">购买</a>
+					</c:if>
 					<div class="btn-group"></div>
 				</div>
 				<div class="col-md-1">

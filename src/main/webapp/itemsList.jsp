@@ -107,12 +107,16 @@
 					</div>
 					<div class="col-md-3" style="text-align: right;">
 						<a class="text-primary" href="../item/listStoreItem.do?u_id=${item.user.u_id}">进入${item.user.u_store}店铺</a>
-						<c:if test="${item.i_iskill == 1}">
+						<c:if test="${item.i_iskill == 1 && item.surplustime != '00:00'}">
 							<h5 class=" text-right">离开始还剩 ${item.surplustime}</h5>
 						</c:if>
 						<h3 class="text-right"></h3>
-						<c:if test="${item.i_iskill == 1}">
+						<c:if test="${item.i_iskill == 1 && item.surplustime != '00:00'}">
 							<button type="button" class="btn btn-default" style="color: #AF3030;" onclick="location.reload()">刷新</button>
+						</c:if>
+						<c:if test="${item.i_iskill == 1 && item.surplustime == '00:00'}">
+							<a class="btn btn-info btn-sm"
+								href="../item/tobuyItem.do?i_id=${item.i_id}&count=1">购买</a>
 						</c:if>
 						<c:if test="${item.i_stock != 0 && item.i_iskill != 1}">
 							<a href="../cart/addCart.do?u_id=${sessionScope.user.u_id}&i_id=${item.i_id}&c_count=1"><button type="button" class="btn btn-default">加入购物车</button></a>
